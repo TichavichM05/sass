@@ -65,7 +65,9 @@
 
 
 /* begin::datatable */
+$bg-color-hover: rgb(226 240 255 / 78%);
 $text-color-hover: #0855a8;
+$text-color-active: #0a488a;
 
 .gtw-datatable {
     border: 1px solid #343a40;
@@ -98,6 +100,22 @@ $text-color-hover: #0855a8;
 
 	.edit-signature {
 		position: relative;
+
+		&.active {
+			background-color: rgb(202 228 255 / 78%) !important;
+			color: $text-color-active !important;
+			
+			.edit-trigger{
+				opacity: 1;
+				transform: translateY(-50%) scale(1);
+				right: 5px;
+			}
+
+			.text-edit-signature{
+				color: $text-color-active !important;
+			}
+		}
+
 		.edit-trigger{
             position: absolute;
             right: 1px;
@@ -124,7 +142,7 @@ $text-color-hover: #0855a8;
 		}
 
 		&:hover {
-            background-color: rgb(202 228 255 / 78%);
+            background-color: $bg-color-hover;
             box-shadow: 0 5px 15px rgba(0,123,255,0.15);
             color: $text-color-hover;
             cursor: pointer;
@@ -138,7 +156,6 @@ $text-color-hover: #0855a8;
 				color: $text-color-hover;
 			}
 		}
-
 	}
 }
 /* eng::datatable*/
@@ -167,13 +184,16 @@ $text-color-hover: #0855a8;
 
 	.list-group-item {
 		&.active {
+			top: 0;
+			position: sticky;
+			z-index: 10;
 			color: #494343;
-			background-color: #e1efff87;
+			background-color: #e1efff;
 			border-top-color: #aac8e9;
 			border-bottom-color: #aac8e9;
 			border-left: none;
-			  border-right: none;
-			
+			border-right: none;
+						
 			.text-title {
 				color: #8e949a;
 			}
