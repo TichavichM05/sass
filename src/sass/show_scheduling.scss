@@ -1,3 +1,29 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "bootstrap_bs5/variables";
+
+
+#schedule_original,#schedule_current{
+	.wrapper-content{
+		position: relative;
+	}
+	.spinner-loading-overlay {
+		display: flex;
+		justify-content: center;
+		align-items: start;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(121, 121, 121, 0.215); /* มืดจาง */
+		z-index: 999;
+	}
+}
+
+
+
 
 /* begin::shift schedule table */
 .shift-schedule-table {
@@ -104,6 +130,21 @@
 
 /* begin::modal align position */
 #grouping_position {
+	.wrapper-content{
+		position: relative;
+	}
+	.spinner-loading-overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgb(255 255 255 / 22%); /* มืดจาง */
+		z-index: 999;
+	}
 	.position-list{
 		height: calc(70vh - 100px);
 		overflow-y: auto;
@@ -131,7 +172,7 @@
 		button{
             border-radius: 0.4rem;
             border: 1px solid #c0d5f9;
-            padding-top: 0.2rem;
+            padding-top: 0.1rem;
             padding-bottom: 0.2rem;
 
 			i.fa{
@@ -157,4 +198,684 @@
 }
 
 /* end::modal align position */
+
+
+/* begin:: button export schedule */
+@mixin btn-colors($color, $name) {
+	.btn-#{$name} {
+		color: color.change($color, $lightness: 20%, $saturation: 90%) !important;
+		background-color: color.change($color, $lightness: 70%, $saturation: 60%, $alpha: 0.4) !important;
+		border-color: color.scale($color, $lightness: 50%, $saturation: -25%) !important;
+	
+		&:hover {
+			color: #fff !important;
+			background-color: color.change($color, $lightness: 40%, $saturation: 60%) !important;
+			border-color: color.change($color, $lightness: 30%, $saturation: 80%) !important;
+		}
+	
+		&:focus,
+		&.focus {
+			box-shadow: 0 0 0 0.2rem color.change($color, $lightness: 70%, $saturation: 60%, $alpha: 0.8) !important;
+		}
+	
+		&.disabled,
+		&:disabled {
+			color: #fff !important;
+			background-color: color.change($color, $lightness: 45%, $saturation: 60%) !important;
+			border-color: color.change($color, $lightness: 40%, $saturation: 60%) !important;
+		}
+	
+		&:not(:disabled):not(.disabled):active,
+		&:not(:disabled):not(.disabled).active,
+		.show > .btn-export-schedule.dropdown-toggle {
+			color: #fff !important;
+			background-color: color.change($color, $lightness: 50%, $saturation: 40%) !important;
+			border-color: color.change($color, $lightness: 50%, $saturation: 30%) !important;
+		} 
+	
+		&:not(:disabled):not(.disabled):active:focus,
+		&:not(:disabled):not(.disabled).active:focus,
+		.show > .btn-export-schedule.dropdown-toggle:focus {
+			box-shadow: 0 0 0 0.2rem color.change($color, $lightness: 70%, $saturation: 60%, $alpha: 0.8) !important;
+		}
+	}
+  }
+
+
+$btn-colors: (
+	"export-schedule": #3ecab3,
+  );  
+
+  @each $name, $color in $btn-colors {
+	@include btn-colors($color, $name);
+  }
+
+/* end:: button export schedule */
+
+
+/* begin:: progress download file */
+@keyframes shimmerProgressBarSwal2 {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+@keyframes bounceInProgressBarSwal2 {
+	0% { transform: scale(0.5); opacity: 0; }
+	50% { transform: scale(1.2); }
+	100% { transform: scale(1); opacity: 1; }
+}
+.progress-bar-swal2-container{
+	.downloadfile-progress-bar {
+		width: 100%;
+		height: 25px;
+		background: linear-gradient(90deg, #dfedf1 0%, #f1fcff 100%);
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+		position: relative;
+	}
+	
+	.downloadfile-progress-fill {
+		height: 100%;
+		background: linear-gradient(90deg, #638bf1 0%, #5ca4f6 50%, #55d1f7 100%);
+		border-radius: 16px;
+		transition: width 0.3s ease;
+		position: relative;
+		box-shadow: 0 2px 8px rgba(92, 231, 246, 0.4);
+	}	
+	.downloadfile-progress-fill::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+		animation: shimmerProgressBarSwal2 2s infinite linear; /* Use linear for a smoother loop */
+	}
+	.downloadfile-progress-text {
+		font-size: 20px;
+		font-weight: 700;
+		color: #1782b7;
+		text-align: center;
+		margin-top: 16px;
+		/* Use tabular-nums to prevent text from jumping as numbers change width */
+		font-variant-numeric: tabular-nums;
+		text-shadow: 0 2px 4px rgba(99, 241, 222, 0.1);
+	}
+	
+	.swal2-icon.swal2-success .swal2-success-ring {
+		animation: bounceInProgressBarSwal2 0.8s;
+	}
+}
+/* end:: progress download file */
+
+@mixin btn-outline-soft($color, $name) {
+.btn-outline-soft-#{$name} {
+	background-color: color.scale($color, $lightness: 95%, $saturation: -10%);
+	border: 1px solid color.scale($color, $lightness: 70%, $saturation: -30%);
+	color: color.scale($color, $lightness: 30%);
+	font-weight: 400;
+	border-radius: 10px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+	  background-color: color.scale($color, $lightness: 85%, $saturation: -1%);
+	  border-color: color.scale($color, $lightness: 75%, $saturation: -30%);
+	  color: color.scale($color, $lightness: -10%);
+	  box-shadow: 0 10px 20px color.change($color, $alpha: 0.15);
+	}
+
+	&:focus,
+	&.focus {
+	  box-shadow: 0 0 0 0.2rem color.change($color, $alpha: 0.2);
+	  outline: none;
+	}
+
+	&.disabled,
+	&:disabled {
+	  color: color.scale($color, $lightness: 40%);
+	  background-color: transparent;
+	  border-color: color.scale($color, $lightness: 85%, $saturation: -40%);
+	  opacity: 0.6;
+	  cursor: not-allowed;
+	}
+
+	&:not(:disabled):not(.disabled):active,
+	&:not(:disabled):not(.disabled).active,
+	.show > &.dropdown-toggle {
+	  background-color: color.scale($color, $lightness: 5%, $saturation: -25%);
+	  border-color: color.scale($color, $lightness: 65%, $saturation: -20%);
+	  color: color.scale($color, $lightness: 100%);
+	}
+
+	&:not(:disabled):not(.disabled):active:focus,
+	&:not(:disabled):not(.disabled).active:focus,
+	.show > &.dropdown-toggle:focus {
+	  box-shadow: 0 0 0 0.2rem color.change($color, $alpha: 0.2);
+	}
+  }
+}
+
+// $theme-colors: (
+//   "primary": #0d6efd,
+// );  
+
+// @each $name, $color in $theme-colors {
+//   @include btn-outline-soft($color, $name);
+// }
+
+
+/* begin:: model signature */
+@keyframes shimmerLoading {
+	0% { background-position: -468px 0; }
+	100% { background-position: 468px 0; }
+}
+.modal-signature-report{
+	.schedule-list-container{
+		position: relative;
+	}
+
+	.spinner-loading-overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;		
+		z-index: 999;
+		background-color: rgba(241, 241, 241, 0.332);
+		font-size: 12px;
+	}
+
+	.nav-pills-custom {
+		background: rgb(223 235 253);
+		padding: 5px;
+		border-radius: 10px;
+		display: inline-flex;
+
+		.nav-link{
+			border-radius: $border-radius-lg;
+			color: #436d93;
+			font-weight: 500;
+			padding: 8px 24px;
+			margin-right: 5px;
+			border: none;
+			background: transparent;
+
+			&.active{
+				font-weight: bold;
+				background: $white;
+				color: $primary;
+				box-shadow: 0 2px 5px color.change($primary, $alpha: 0.2);
+			}
+		}
+	}
+
+
+	$border-color: #75a9df;
+	$checkbox-size-md: 1.1rem;
+	.custom-control-label {
+		&::before{
+			width: $checkbox-size-md;
+			height: $checkbox-size-md;
+			border: 1px solid color.scale($border-color, $lightness: 40%);
+		}
+		&::after{
+			width: $checkbox-size-md;
+			height: $checkbox-size-md;
+		}
+	}
+
+	$font-size-title: 11px;
+	$font-color-title: color.change($gray-500,$alpha:0.9);
+	$font-color-title-hover: color.change($gray-600,$alpha: 0.8);
+	$font-color-title-active: $gray-600;
+	$font-color-value: color.change($gray-600,$alpha:0.8);
+	$font-color-value-hover: color.change($gray-700,$alpha: 0.8);
+	$font-color-value-active: $gray-700;
+
+	$signature-border-radius: 5px;
+	$signature-max-width: 170px;
+
+	.schedule-list-container{
+		border-radius: $border-radius-lg;
+		border: 1px solid color.scale($border-color, $lightness: 50%);
+		.list-header{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-top: map-get($spacers, 2);
+			padding-bottom: map-get($spacers, 2);
+			background-color: color.change($border-color, $lightness: 95%, $saturation: 100%, $alpha: 0.2);
+			border-bottom: 1px solid color.scale($border-color, $lightness: 50%);
+	
+			div:nth-of-type(1){
+				margin-left: 0.9rem;
+			}
+			div:nth-of-type(2){
+				font-size: 13px;
+				padding-right: map-get($spacers, 3);
+			}
+		}
+	}
+
+	.schedule-list-items {	
+		height: 300px;
+		max-height: calc(100vh - 630px);
+		overflow-y: auto;
+		overflow-x: hidden;
+		ul {
+			font-size: 13px;
+		}
+	}
+
+	.list-group-item {
+		padding: 0.6rem 0.8rem;
+		cursor: pointer;
+
+		.schedule-name {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			max-width: 350px;
+			color: #3b5998;
+		}
+		.created-at-title{
+			font-size: $font-size-title;
+			color: $font-color-title;
+			margin-right: map-get($spacers, 1);
+		}
+		.created-at-value {
+			font-size: 12px;
+			color: $font-color-value;
+		}
+		.position-title{
+			font-size: $font-size-title;
+			color: $font-color-title;
+			margin-right: map-get($spacers, 1);
+		}
+		.position-value{
+			color: $font-color-value;
+		}		
+		.operate-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+
+			.created-by,
+			.checked-by,
+			.approved-by{
+				max-width: $signature-max-width;
+				padding: 3px 12px;
+				border-radius: $border-radius-pill;
+				background: #fff;
+				border: 1px solid $gray-100;
+				margin-right: 8px;
+				margin-bottom: 5px;
+				display: inline-flex;
+				align-items: center;
+				font-size: 12px;
+			}
+
+			.created-by{
+				border: 1px solid color.change($blue-200,$alpha: 0.42);
+				// background-color: color.change(color.scale($blue-100, $lightness: 50%),$alpha: 0.2);
+				// color: color.change($blue-600,$alpha: 0.68);
+				i {
+					margin-right: map-get($spacers, 1);
+					color: $blue-600;
+				}
+			}
+			.checked-by{
+				border: 1px solid color.change($orange-200,$alpha: 0.42);
+				// background-color: color.change(color.scale($orange-100, $lightness: 50%),$alpha: 0.2);
+				// color: color.change($orange-600,$alpha: 0.68);
+				i {
+					margin-right: map-get($spacers, 1);
+					color: $orange-600;
+				}
+			}
+			.approved-by{
+				border: 1px solid color.change($teal-200,$alpha: 0.42);
+				// background-color: color.change(color.scale($teal-100, $lightness: 50%),$alpha: 0.2);
+				// color: color.change($teal-600,$alpha: 0.68);
+				i {
+					margin-right: map-get($spacers, 1);
+					color: $teal-600;
+				}
+			}
+		}
+
+		&.active {
+			background-color: rgb(224 241 255 / 50%) !important;
+			border-color: #bad2e7 !important;
+			.schedule-name{
+				color:#142f65 !important;
+			}
+			.created-at-title{
+				color: $font-color-title-active !important;
+			}
+			.position-title{
+				color: $font-color-title-active !important;
+			}
+			.created-at-value {
+				color: $font-color-value-active !important;
+			}
+			.position-value {
+				color: $font-color-value-active !important;
+			}
+			.operate-group{
+				.created-by{
+					color: $blue-700 !important;
+					border-color: color.change($blue-300,$alpha: 0.65) !important;
+				}
+				.checked-by{
+					color: $orange-700 !important;
+					border-color: color.change($orange-300,$alpha: 0.65) !important;
+				}
+				.approved-by{
+					color: $teal-700 !important;
+					border-color: color.change($teal-300,$alpha: 0.65) !important;
+				}
+			}
+		}
+
+		&:hover{
+			border-color: $gray-300;
+			.schedule-name{
+				color:#142f65d4;
+			}
+			.created-at-title{
+				color: $font-color-title-hover;
+			}
+			.position-title{
+				color: $font-color-title-hover;
+			}
+			.created-at-value {
+				color: $font-color-value-hover;
+			}
+			.position-value {
+				color: $font-color-value-hover;
+			}
+			.operate-group{
+				.created-by{
+					border-color: color.change($blue-200,$alpha: 0.7);
+					color: $blue-600;
+				}
+				.checked-by{
+					border-color: color.change($orange-200,$alpha: 0.7);
+					color: $orange-600;
+				}
+				.approved-by{
+					border-color: color.change($teal-200,$alpha: 0.7);
+					color: $teal-600;
+				}
+			}
+		}
+	}
+
+
+	.signature-container{
+		height: 280px;
+		max-height: calc(100vh - 680px);
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		.signature-grid{
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+			gap: 0.5rem;
+			margin-top: 0.3rem;
+			margin-bottom: 0.3rem;
+			counter-reset: person-counter;
+
+			.btn-remove-signature {				
+				align-self: stretch;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: 0.2s;
+				width: 20px;	
+				color: $gray-500;
+				border-top-right-radius: $border-radius-lg;
+				border-bottom-right-radius: $border-radius-lg;
+			}
+	
+			.btn-remove-signature:hover {
+				color: $red-500;
+				background-color: $red-100;
+			}
+		}
+
+        .person-card {
+			display: flex;       
+			position: relative;
+            border-radius: $border-radius-lg;
+			padding: 4px 10px;            
+            align-items: center;
+			font-size: 12px;				
+
+			&::before {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				counter-increment: person-counter;
+				content: counter(person-counter);			
+				top: 11px;
+				width: 20px;
+				height: 20px;
+				background-color: $white;
+				font-size: 0.65rem;
+				font-weight: bold;
+				border-radius: 50%;
+				color: #6c757d;
+			}
+        }
+
+        .person-card-empty {
+			display: flex;       
+			position: relative;
+            border-radius: $border-radius-lg;
+			padding: 4px 0 4px 0;  			       
+            align-items: center;
+			font-size: 12px;
+
+			.person-info{
+				margin-left: 10px;
+			}
+        }
+
+        .person-info {
+			width: 150px;
+			margin-left: 1.8rem;
+			.name-value {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+			.detail-value {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				color: $gray-600;
+				font-size: 11px;
+			}
+		}
+
+
+
+        .skeleton-loading {
+            background: #f6f7f8;
+            background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+            background-repeat: no-repeat;
+            background-size: 800px 100%; 
+            display: inline-block;
+            position: relative;
+            animation: shimmerLoading 1.5s infinite linear;
+            border-radius: $border-radius-sm;
+        }
+
+        .person-card-skeleton {
+			display: flex;         
+			flex-wrap: wrap;
+			align-items: center;   
+			gap: 0.3rem;
+            border-radius: $border-radius-lg;
+			padding: 6px;
+			font-size: 12px;
+			border: 1px solid #cfdbe7;
+            background: #fff;
+        }
+
+        .skeleton-text-name {
+			width: 85%;
+			height: 15px;
+        }
+
+        .skeleton-text-detail {
+			width: 50%;
+			height: 12px;
+        }
+	}
+
+	.customized{
+		.signature-container{
+			height: 600px;
+			max-height: calc(100vh - 300px);
+		}
+		.person-card {
+			padding: 0 0 0 10px !important;
+		}
+		.person-card-empty {
+			padding: 0 !important;
+		}		
+		.person-info{
+			width: 140px !important;
+			padding: 4px 0 4px 0 !important;
+			flex-grow: 1 !important;
+		}
+	}
+
+	.signature-created-by{
+		.signature-header {
+			font-weight: bold;
+			color: $blue-600;
+		}
+		.person-card {
+			&::before{				
+				border: 1px solid $blue-100;
+				color: $blue-900;
+			}
+			.btn-remove-signature {
+				background-color: color.scale($blue-200, $lightness: 80%);
+				border-left: 1px solid $blue-100;
+			}
+		}
+		.person-card,.person-card-empty{			
+			border: 1px solid $blue-100;
+			background-color: color.scale($blue-100, $lightness: 80%);
+
+			.person-info{
+				color: $blue-800;
+			}
+		}
+
+	}
+	.signature-checked-by{
+		.signature-header {
+			font-weight: bold;
+			color: $orange-600;
+		}
+		.person-card{
+			&::before{				
+				border: 1px solid $orange-100;
+				color: $orange-900;
+			}
+			.btn-remove-signature {
+				background-color: color.scale($orange-200, $lightness: 80%);
+				border-left: 1px solid $orange-100;
+			}
+		}
+		.person-card,.person-card-empty{
+			border: 1px solid $orange-100;
+			background-color: color.scale($orange-100, $lightness: 80%);
+
+			.person-info{
+				color: $orange-800;
+			}
+		}
+	}
+	.signature-approved-by{
+		.signature-header {
+			font-weight: bold;
+			color: $teal-600;
+		}
+		.person-card{
+			&::before{				
+				border: 1px solid $teal-100;
+				color: $teal-900;
+			}
+			.btn-remove-signature {
+				background-color: color.scale($teal-200, $lightness: 80%);
+				border-left: 1px solid $teal-100;
+			}
+		}
+		.person-card,.person-card-empty{
+			border: 1px solid $teal-100;
+			background-color: color.scale($teal-100, $lightness: 80%);
+
+			.person-info{
+				color: $teal-800;
+			}
+		}
+	}
+
+	.select2-hide-disabled .select2-results__option.select2-results__option--disabled{
+		display: none;
+	}
+
+	.select2-selection {
+		border-radius: $border-radius-lg;
+		border: 1px solid $gray-500;
+	}
+	.select2-container--default {
+		.select2-results__option{
+			.select2-person-name{
+				color: $blue-700;
+			}
+			.select2-position-label{
+				font-size: 10px;
+				margin-right: 0.3rem;
+				color: $gray-500;
+			}
+			.select2-position-name{
+				font-size: 12px;
+				color: $gray-600;
+			}
+		}
+		.select2-results__option--highlighted {
+			.select2-person-name{
+				color:#eef6ff;
+			}
+			.select2-position-label{
+				color: #ffffff8a;
+			}
+			.select2-position-name{
+				color: #ffffff9c;
+			}
+		}
+	}
+}
+/* end:: model signature  */
+
+
+
 

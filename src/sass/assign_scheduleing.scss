@@ -2,45 +2,45 @@
 
 /* assign scheduler [begin] */
 :root {
-        /* team */
-        --line-color: #054d9e;
-        --remove-text-color: #A0153E;
-        --remove-text-color-hover: #fff,
-        --remove-border-color: #efd5ccd4;
-        --remove-bg-color: #ffd5c6ab;
-        --remove-bg-color-hover: #e04f1a;
+	/* team */
+	--line-color: #054d9e;
+	--remove-text-color: #A0153E;
+	--remove-text-color-hover: #fff,
+	--remove-border-color: #efd5ccd4;
+	--remove-bg-color: #ffd5c6ab;
+	--remove-bg-color-hover: #e04f1a;
 
 
-        /* calendar */
-        --gap-box: 5px;
-        --weekend-bg-color: rgb(253 239 239);
-        --weekend-text-color: #fb3968;
-        --weekend-text-color-hover: #cb0738;
-        --week-text-color: #466a9d;
-        --week-text-color-hover: #062b5d;
-        --day-text-bg-color: white;
-        --day-text-bg-color-hover: #ffedbc;
-        --day-border-color: #bfcbe2;
-        --day-border-color-hover: #a7c0d9;
+	/* calendar */
+	--gap-box: 5px;
+	--weekend-bg-color: rgb(253 239 239);
+	--weekend-text-color: #fb3968;
+	--weekend-text-color-hover: #cb0738;
+	--week-text-color: #466a9d;
+	--week-text-color-hover: #062b5d;
+	--day-text-bg-color: white;
+	--day-text-bg-color-hover: #ffedbc;
+	--day-border-color: #bfcbe2;
+	--day-border-color-hover: #a7c0d9;
 
-        --day-shift-text-color: #595959;
-        --day-shift-zero-text-color: #b9b9b9;
-        --day-shift-amount-zero-text-color: #dddddd;
+	--day-shift-text-color: #595959;
+	--day-shift-zero-text-color: #b9b9b9;
+	--day-shift-amount-zero-text-color: #dddddd;
 
-        --day-hover-shift-text-color: #022954;
-        --day-hover-shift-zero-text-color: #4979ac;
-        --day-hover-shift-amount-zero-text-color: #bdd3eb;
+	--day-hover-shift-text-color: #022954;
+	--day-hover-shift-zero-text-color: #4979ac;
+	--day-hover-shift-amount-zero-text-color: #bdd3eb;
 
 
-        /* calendar event handler (day-off) */
-        --add-day-off-active-bg-color: #f9f6dd;
-        --add-day-off-active-border-color: #b7a723;
-        --add-day-off-active-text-color: #565405;
-        --add-day-off-active-text-bg-color: #f3f7ff;
+	/* calendar event handler (day-off) */
+	--add-day-off-active-bg-color: #f9f6dd;
+	--add-day-off-active-border-color: #b7a723;
+	--add-day-off-active-text-color: #565405;
+	--add-day-off-active-text-bg-color: #f3f7ff;
 
-        --add-day-off-active-shift-text-color: #594f03;
-        --add-day-off-active-shift-zero-text-color: #b3a00c;
-        --add-day-off-active-shift-amount-zero-text-color: #e5e1bd;
+	--add-day-off-active-shift-text-color: #594f03;
+	--add-day-off-active-shift-zero-text-color: #b3a00c;
+	--add-day-off-active-shift-amount-zero-text-color: #e5e1bd;
 }    
 $bs-4-primary: #007bff;
 
