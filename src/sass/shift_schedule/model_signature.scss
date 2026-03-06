@@ -1,0 +1,103 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "../bootstrap_bs5/functions";
+@import "../bootstrap_bs5/variables";
+
+
+/* begin:: model signature */
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.modal-signature-report{
+
+	.fa-spinner {
+		animation: spin 1s linear infinite;
+	} 
+
+	.select2-selection {
+		border-radius: $border-radius-lg;
+		border: 1px solid $gray-500;
+		align-content: center;
+	}
+	.select2-container--default {
+		.select2-selection--single .select2-selection__rendered{
+			line-height:normal;
+			height: auto;
+
+			.select2-person-name{
+				color: $blue-800;
+			}
+			.select2-position-label{
+				font-size: 10px;
+				margin-right: 0.3rem;
+				color: $gray-600;
+			}
+			.select2-position-name{
+				font-size: 12px;
+				color: $gray-700;
+			}
+		}
+
+		.select2-results__option{
+			.select2-person-name{
+				color: $blue-700;
+			}
+			.select2-position-label{
+				font-size: 10px;
+				margin-right: 0.3rem;
+				color: #989ea5;
+			}
+			.select2-position-name{
+				font-size: 12px;
+				color: $gray-600;
+			}
+		}
+		.select2-results__option--highlighted {
+			.select2-person-name{
+				color:#eef6ff;
+			}
+			.select2-position-label{
+				color: #ffffff8a;
+			}
+			.select2-position-name{
+				color: #ffffff9c;
+			}
+		}
+	}
+
+	.select2-container .select2-selection--single{
+		height: 55px !important;
+	}
+	
+
+	.signature-header{
+		align-content: center;
+		font-weight: bold;
+	}
+
+	.signature-created-by {
+		margin-bottom: map-get($spacers, 3);
+		.signature-header {
+			color: $blue-600;
+		}
+	}
+	.signature-checked-by {
+		margin-bottom: map-get($spacers, 3);
+		.signature-header {
+			color: $orange-600;
+		}
+	}
+	.signature-approved-by {
+		margin-bottom: map-get($spacers, 3);
+		.signature-header {
+			color: $teal-600;
+		}
+	}
+}
+/* end:: model signature  */
