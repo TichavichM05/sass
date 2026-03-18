@@ -1,0 +1,215 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "bootstrap_bs5/variables";
+
+/* begin:: modal allocate car normal */
+.modal-allocate-car-normal{
+	.car-normal-allocate-container{
+		max-height: calc(100vh - 280px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		padding: map-get($spacers, 2);
+	}
+
+    div.collapse[role="tabpanel"].show {
+        border-left: 1px solid $gray-500;
+        border-right: 1px solid $gray-500;
+        border-bottom: 1px solid $gray-500;
+        border-bottom-left-radius: $border-radius-lg;
+        border-bottom-right-radius: $border-radius-lg;
+    }
+
+    a[data-toggle="collapse"] {
+        padding: 0.4rem 0.7rem;
+        background-color: color.change($gray-100, $alpha: 0.5);
+		border-radius: $border-radius-lg;
+		border:1px solid #e2e8f0;
+		width: 100%;
+
+		&:not(.accordion-header.collapsed) {
+			border: 1px solid $gray-500;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;		
+		}
+
+		&:not(.accordion-header.collapsed) .accordion-toggle::before {
+			font-family: "simple-line-icons";
+			content: "\E607";
+			font-size:12px;
+			transform: rotate(-180deg);
+		}
+    }
+	.accordion-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		.accordion-item {
+			border-radius: $border-radius-lg;
+			box-shadow: $box-shadow-sm;
+			background: $white;
+			margin-bottom: map-get($spacers, 1);
+		}
+	}
+	.accordion-header {
+		.accordion-toggle{
+			&::before {
+				font-family: "simple-line-icons";
+				font-size: 12px;
+				content: "\E604";
+				transition: transform .2s ease-in-out;
+			}
+		}
+		.items-details{
+			font-size:13px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			.detail-label{
+				color: $gray-600;
+				margin-right: map-get($spacers, 1);
+			}
+			.detail-value{
+				color: $black;
+				margin-right: map-get($spacers, 1);
+			}
+		}
+		.items-status{
+			font-size: 12px;
+			font-weight: 600;
+			white-space: nowrap;
+			padding: 2px 6px;
+			border-radius: 6px;
+			text-align: center;
+		}
+
+		.status-pending {
+			color: $white;
+			background: $blue-400;
+		}
+	
+		.status-processing {
+			color: $orange-500;
+			background: color.change($orange-100, $alpha: 0.8);
+		}
+	
+		.status-success {
+			color: $teal-500;
+			background: color.change($teal-100, $alpha: 0.8);
+		}
+	
+		.status-error {
+			color: $red-500;
+			background: color.change($red-100, $alpha: 0.8);
+		}
+
+	}
+
+	.accordion-header.processing{
+		border-color: $orange-400;
+		box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+	}
+
+	.accordion-header.success{
+		border-color: $teal-400;
+		box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+	}
+
+	.accordion-header.error{
+		border-color: $red-400;
+		box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+	}
+
+	.accordion-content{
+		padding-top: map-get($spacers, 0);
+		font-size:12px;
+
+		.list-group-item {
+			padding: 0.55rem 0.8rem;
+		}
+
+		.content-label {
+			color: $gray-600;
+			margin-right: map-get($spacers, 1);
+		}
+	
+		.content-value {
+			color: $gray-800;
+		}
+	}
+
+	.spinner-grow-sm {
+		width: 14px;
+		height: 14px;
+	}
+
+	.progress-section {
+		margin-bottom: 20px;
+		padding: 15px;
+		background: #f1f5f9;
+		border-radius: 10px;
+	}
+
+	.progress-info {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 8px;
+		font-size: 14px;
+		color: #475569;
+	}
+
+	.progress {
+		height: 10px;
+		border-radius: 5px;
+		background: #e2e8f0;
+		overflow: hidden;
+	}
+
+	.progress-bar {
+		background: linear-gradient(90deg, #667eea 0%, #4b8ea2 100%);
+		transition: width 0.4s ease;
+	}
+
+	#btn_execute_allocation {
+		background: linear-gradient(135deg, #70ba42 0%, #4ba26b 100%);
+		border: none;
+		color: white;
+		padding: 10px 30px;
+		border-radius: 8px;
+		font-weight: 600;
+		transition: all 0.3s ease;
+	}
+
+	#btn_execute_allocation:hover:not(:disabled) {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(102, 161, 234, 0.4);
+		color: white;
+	}
+
+	#btn_execute_allocation:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	#btn_close_allocation {
+		background: #e2e8f0;
+		border: none;
+		color: #475569;
+		padding: 10px 25px;
+		border-radius: 8px;
+		font-weight: 500;
+		transition: all 0.3s ease;
+	}
+
+	#btn_close_allocation:hover {
+		background: #cbd5e1;
+		color: #1e293b;
+	}
+	#btn_close_allocation:disabled{
+		cursor: not-allowed;
+	}
+}
+/* end:: modal allocate car normal */
+

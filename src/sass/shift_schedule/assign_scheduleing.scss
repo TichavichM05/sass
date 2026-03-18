@@ -1,4 +1,6 @@
 @use 'sass:color';
+@import "../bootstrap_bs5/functions";
+@import "../bootstrap_bs5/variables";
 
 /* assign scheduler [begin] */
 :root {
@@ -153,7 +155,8 @@ $teal-color: #1c8884;
 }
 /*End::modify bootstrap */
 
-/* Begin::select2-multiple-custom */
+
+/* Begin:: custom multiple select2 */
 .manpower-shift {
 	+ .select2-container--default {
 		.select2-selection--multiple {
@@ -189,8 +192,38 @@ $teal-color: #1c8884;
 		}
 	}
 }
-// select2 of scheduleing
+/* End:: custom multiple select2 */
 
+/* Begin:: custom select2 */
+.person-name {
+	+ .select2-container--default {
+		.select2-selection{
+			align-content: center;
+		}
+		.select2-selection--single .select2-selection__rendered{
+			line-height:1.1;
+			height: auto;
+			.select2-position-label{
+				font-size: 11px;
+				margin-right: map-get($spacers, 1);
+				color: $gray-500
+			}
+			.select2-position-name{
+				font-size: 12px;
+				color: color.change($gray-600,$alpha: 0.82);
+			}
+		}
+
+		.select2-selection--single{
+			height: 42px !important;
+		}
+	}
+}
+/* End:: custom select2 */
+
+
+
+// select2 of scheduleing
 // .select2-container--default {
 // 	.select2-results__option--selected{
 // 		background-color: color.change($bs-4-primary,$lightness: 93%, $saturation: 90%, $alpha: 0.971);
@@ -202,9 +235,52 @@ $teal-color: #1c8884;
 // 	}
 // }
 
-/* End::select2-multiple-custom */
-
 #assign_scheduler{
+	.select2-container--default {
+		.select2-results__option {
+			.multiple-select2-position-label{
+				font-size: 11px;
+				margin-left: map-get($spacers, 2);
+				margin-right: map-get($spacers, 1);
+				color: #a7adb3;
+			}
+			.multiple-select2-position-name{
+				font-size: 12px;
+				color: $gray-600;
+			}
+		}
+		.select2-results__option--highlighted {
+			.multiple-select2-position-label{
+				color: #ffffff8a;
+			}
+			.multiple-select2-position-name{
+				color: #ffffff9c;
+			}
+		}
+	}
+
+	.select2-container--default {
+		.select2-results__option {
+			.select2-position-label{
+				font-size: 11px;
+				margin-right: map-get($spacers, 1);
+				color: #a7adb3;
+			}
+			.select2-position-name{
+				font-size: 12px;
+				color: $gray-600;
+			}
+		}
+		.select2-results__option--highlighted {
+			.select2-position-label{
+				color: #ffffff8a;
+			}
+			.select2-position-name{
+				color: #ffffff9c;
+			}
+		}
+	}
+
 	.setting-container{
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -970,8 +1046,7 @@ $teal-color: #1c8884;
 			content: "";
 			position: absolute;
 			left: 1px;
-			top: 20%;
-			bottom: 20%;
+			top: 25%;
 			width: 1px;
 			height: 50%;
 			background: #b6ceeb;
