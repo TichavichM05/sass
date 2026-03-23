@@ -1,0 +1,188 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "bootstrap_bs5/variables";
+
+
+@font-face {
+	font-family: 'TH Sarabun New';
+	src: url('fonts/thsarabunnew-webfont.eot');
+	src: url('fonts/thsarabunnew-webfont.eot?#iefix') format('embedded-opentype'),
+		url('fonts/thsarabunnew-webfont.woff') format('woff'),
+		url('fonts/thsarabunnew-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'TH Sarabun New';
+	src: url('fonts/thsarabunnew_bolditalic-webfont.eot');
+	src: url('fonts/thsarabunnew_bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+		url('fonts/thsarabunnew_bolditalic-webfont.woff') format('woff'),
+		url('fonts/thsarabunnew_bolditalic-webfont.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+
+}
+
+@font-face {
+	font-family: 'TH Sarabun New';
+	src: url('fonts/thsarabunnew_italic-webfont.eot');
+	src: url('fonts/thsarabunnew_italic-webfont.eot?#iefix') format('embedded-opentype'),
+		url('fonts/thsarabunnew_italic-webfont.woff') format('woff'),
+		url('fonts/thsarabunnew_italic-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+
+}
+
+@font-face {
+	font-family: 'TH Sarabun New';
+	src: url('fonts/thsarabunnew_bold-webfont.eot');
+	src: url('fonts/thsarabunnew_bold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('fonts/thsarabunnew_bold-webfont.woff') format('woff'),
+		url('fonts/thsarabunnew_bold-webfont.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+
+}
+@page {
+	// size: A4 portrait;          /* หรือ landscape */
+	margin: 20mm 15mm 20mm 15mm !important; /* margin paper A4 */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Sarabun', 'TH Sarabun New', 'Tahoma', sans-serif;
+    font-size: 9pt;
+    line-height: 0.8;
+}
+.border-bottom-dotted {
+	border-bottom: 0.8pt dotted black;
+}
+/* begin:: typography */
+.fw-bold {font-weight: bold;}
+.fst-italic {font-style: italic;}
+
+.text-3xl  { font-size: 24pt; }
+.text-2xl  { font-size: 20pt; }
+.text-xl   { font-size: 16pt; }
+.text-lg   { font-size: 13pt; }
+.text-base { font-size: 10pt; }
+.text-sm   { font-size: 8.5pt; }
+.text-xs   { font-size: 7pt; }
+
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.text-justify { text-align: justify; }
+/* end:: typography */
+
+/* begin:: spacing (margin) */
+.m-0  { margin: 0; }
+.m-1  { margin: 2.5pt; }
+.m-2  { margin: 5pt; }
+.m-4  { margin: 10pt; }
+.m-6  { margin: 15pt; }
+
+.mt-1 { margin-top: 2.5pt; } .mt-2 { margin-top: 5pt; }
+.mt-3 { margin-top: 7.5pt; } .mt-4 { margin-top: 10pt; }
+.mt-6 { margin-top: 15pt; } .mt-8  { margin-top: 20pt; }
+.mt-10{ margin-top: 25pt; } .mt-12 { margin-top: 30pt; }
+
+.mb-1 { margin-bottom: 2.5pt; } .mb-2 { margin-bottom: 5pt; }
+.mb-3 { margin-bottom: 7.5pt; } .mb-4 { margin-bottom: 10pt; }
+.mb-6 { margin-bottom: 15pt; } .mb-8  { margin-bottom: 20pt; }
+.mb-10{ margin-bottom: 25pt; } .mb-12 { margin-bottom: 30pt; }
+
+.ml-1 { margin-left: 2.5pt; } .ml-2 { margin-left: 5pt; }
+.ml-4 { margin-left: 10pt; } .ml-auto { margin-left: auto; }
+
+.mr-1 { margin-right: 2.5pt; } .mr-2 { margin-right: 5pt; }
+.mr-4 { margin-right: 10pt; } .mr-auto { margin-right: auto; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+/* end:: spacing (margin) */     
+
+/* begin:: spacing (padding) */
+// $padding-range: 10;         // จำนวนระดับ (ได้ pl-1 ถึง pl-10)
+// $padding-unit: 5pt;         // ระยะต่อขั้น
+
+// @for $i from 1 through $padding-range {
+//   .pl-#{$i} {
+//     padding-left: $i * $padding-unit;
+//   }
+
+//   .pr-#{$i} {
+//     padding-right: $i * $padding-unit;
+//   }
+
+//   .px-#{$i} { // ใช้ทั้งซ้าย/ขวา
+//     padding-left: $i * $padding-unit;
+//     padding-right: $i * $padding-unit;
+//   }
+// }
+
+
+.p-0  { padding: 0; }
+.p-1  { padding: 2.5pt; }
+.p-2  { padding: 5pt; }
+.p-3  { padding: 7.5pt; }
+.p-4  { padding: 10pt; }
+.p-6  { padding: 15pt; }
+.p-8  { padding: 20pt; }
+
+.px-2 { padding-left: 5pt;  padding-right: 5pt; }
+.px-3 { padding-left: 7.5pt; padding-right: 7.5pt; }
+.px-4 { padding-left: 10pt; padding-right: 10pt; }
+.px-6 { padding-left: 15pt; padding-right: 15pt; }
+
+.py-1 { padding-top: 2.5pt; padding-bottom: 2.5pt; }
+.py-2 { padding-top: 5pt;   padding-bottom: 5pt; }
+.py-3 { padding-top: 7.5pt; padding-bottom: 7.5pt; }
+.py-4 { padding-top: 10pt;  padding-bottom: 10pt; }
+/* end:: spacing (padding) */ 
+
+/* begin:: layout (grid system) */
+.row {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+.row > [class*="col-"] {
+	display: table-cell;
+	vertical-align: top;
+}
+.col-1  { width: 8.33%; }
+.col-2  { width: 16.66%; }
+.col-3  { width: 25%; }
+.col-4  { width: 33.33%; }
+.col-5  { width: 41.66%; }
+.col-6  { width: 50%; }
+.col-7  { width: 58.33%; }
+.col-8  { width: 66.66%; }
+.col-9  { width: 75%; }
+.col-10 { width: 83.33%; }
+.col-11 { width: 91.66%; }
+.col-12 { width: 100%; }
+.col-middle  { vertical-align: middle; }
+.col-bottom  { vertical-align: bottom; }
+.col-gap-sm  { padding-right: 5pt; }
+.col-gap-md  { padding-right: 10pt; }
+.col-gap-lg  { padding-right: 15pt; }
+
+/* ไม่ใส่ padding-right ที่ col สุดท้าย */
+.row > [class*="col-"]:last-child { padding-right: 0; }
+/* end:: layout (grid system) */
+
+.w-full   { width: 100%; }
+.w-half   { width: 50%; }
+.w-auto   { width: auto; }
+.h-full   { height: 100%; }
