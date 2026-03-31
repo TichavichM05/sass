@@ -1,0 +1,166 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+    /* begin:: reuse select2 style  */
+    .select2-container .select2-selection--single {
+        height: calc(1.5em + 0.75rem + 2px);
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 30px;
+    }
+    /* end:: reuse select2 style  */
+    .invalid-required{
+        width: 100%;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #e04f1a;
+    }
+    /* reuse bootstrap style [start] */
+    .gtw-alert-custom{
+        border-color:#d5b3eb !important;
+        background-color:#f9f3fd;
+        padding: 0.6rem 0.8rem;
+    }
+    .gtw-table-custom{
+        border-radius: 0.25rem !important;
+        border: 1px solid #d5b3eb;
+    }
+    .gtw-table-custom table tr > th{
+        background-color:#f9f3fd;
+        color:#774aa4;
+        font-size:13px !important;
+    }
+    .gtw-table-custom table > tr > th,td *{
+        font-family: 'Kanit', sans-serif;
+        font-size: 13px !important;            
+    }    
+    /* reuse bootstrap style [end] */
+
+
+/* begin::button soft */
+@mixin btn-outline-soft($color, $name) {
+	.btn-outline-soft-#{$name} {
+	  background-color: color.scale($color, $lightness: 95%, $saturation: -10%);
+	  border: 1px solid color.scale($color, $lightness: 70%, $saturation: -30%);
+	  color: $color;
+	  font-weight: 400;
+	  border-radius: 10px;
+	  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+	  &:hover {
+		background-color: color.scale($color, $lightness: 85%, $saturation: -1%);
+		border-color: color.scale($color, $lightness: 75%, $saturation: -30%);
+		color: color.scale($color, $lightness: -10%);
+		transform: translateY(-2px);
+		box-shadow: 0 10px 25px color.change($color, $alpha: 0.15);
+	  }
+  
+	  &:focus,
+	  &.focus {
+		box-shadow: 0 0 0 0.2rem color.change($color, $alpha: 0.2);
+		outline: none;
+	  }
+  
+	  &.disabled,
+	  &:disabled {
+		color: color.scale($color, $lightness: 40%);
+		background-color: transparent;
+		border-color: color.scale($color, $lightness: 85%, $saturation: -40%);
+		opacity: 0.6;
+		cursor: not-allowed;
+	  }
+  
+	  &:not(:disabled):not(.disabled):active,
+	  &:not(:disabled):not(.disabled).active,
+	  .show > &.dropdown-toggle {
+		background-color: color.scale($color, $lightness: 75%, $saturation: -30%);
+		border-color: color.scale($color, $lightness: 65%, $saturation: -20%);
+		color: color.scale($color, $lightness: -15%);
+	  }
+  
+	  &:not(:disabled):not(.disabled):active:focus,
+	  &:not(:disabled):not(.disabled).active:focus,
+	  .show > &.dropdown-toggle:focus {
+		box-shadow: 0 0 0 0.2rem color.change($color, $alpha: 0.2);
+	  }
+	}
+  }
+
+  $theme-colors: (
+	"primary": #0d6efd,
+  );  
+
+  @each $name, $color in $theme-colors {
+	@include btn-outline-soft($color, $name);
+  }
+
+  .btn-outline-soft-primary {
+	font-family: "Kanit", sans-serif;
+  }
+/* end::button soft */
+
+
+#supplies_filter_form {
+	.filter-search-box .form-control {
+		font-family: "Kanit", sans-serif;
+		font-size: 0.9rem;
+	}
+	.dropdown-toggle,.dropdown-menu {
+		font-family: "Kanit", sans-serif;
+	}
+	
+}
+
+#modal_impact_materials {
+	.modal-title {
+		font-family: "Kanit", sans-serif;
+	}
+	.modal-footer button {
+		font-family: "Kanit", sans-serif;
+	}
+
+	.nav-pills-custom {
+		background: rgb(223 235 253);
+		padding: 5px;
+		border-radius: 10px;
+		display: inline-flex;
+
+		.nav-link{
+			border-radius: $border-radius-lg;
+			color: #436d93;
+			font-weight: 500;
+			padding: 8px 24px;
+			margin-right: 5px;
+			border: none;
+			background: transparent;
+
+			&.active{
+				font-weight: bold;
+				background: $white;
+				color: $primary;
+				box-shadow: 0 2px 5px color.change($primary, $alpha: 0.2);
+			}
+		}
+	}
+
+	$size-checkbox: 1.1rem;
+	.custom-checkbox {
+		padding-left: 0;
+		left: 50%;
+	}
+	.custom-control-label {
+		&::before {
+			width: $size-checkbox;
+			height: $size-checkbox;
+			border: #adb5bd solid 1px;
+		}
+		&::after {
+			width: $size-checkbox;
+			height: $size-checkbox;
+		}
+	}
+}

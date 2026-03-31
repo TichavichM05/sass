@@ -19,5 +19,107 @@
 }
 
 
+.progress-bar-swal2-container{
+	.downloadfile-progress-bar {
+		width: 100%;
+		height: 25px;
+		background: linear-gradient(90deg, #dfedf1 0%, #f1fcff 100%);
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+		position: relative;
+	}
+	
+	.downloadfile-progress-fill {
+		height: 100%;
+		background: linear-gradient(90deg, #638bf1 0%, #5ca4f6 50%, #55d1f7 100%);
+		border-radius: 16px;
+		transition: width 0.3s ease;
+		position: relative;
+		box-shadow: 0 2px 8px rgba(92, 231, 246, 0.4);
+	}
+	
+	.downloadfile-progress-fill::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+		animation: progressBarSwalShimmer 2s infinite;
+	}	
+
+	.downloadfile-progress-text {
+		font-size: 20px;
+		font-weight: 700;
+		color: #1782b7;
+		text-align: center;
+		margin-top: 16px;
+		font-variant-numeric: tabular-nums;
+		text-shadow: 0 2px 4px rgba(99, 241, 222, 0.1);
+	}
+	
+	.download-icon {
+		animation: progressBarSwalBounce 2s infinite;
+	}
+	
+	@keyframes progressBarSwalShimmer {
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(100%);
+		}
+	}
+
+	@keyframes progressBarSwalBounce {
+		0%, 100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-10px);
+		}
+	}
+}
+
+
+#dt_leave_day{
+	th,td {
+		padding-left: map-get($spacers, 2);
+		padding-right: map-get($spacers, 2);
+		padding-top: map-get($spacers, 1);
+		padding-bottom: map-get($spacers, 1);
+	}
+	.dataTables_wrapper {
+		position: relative !important;
+	}
+	.dataTables_processing {
+		position: absolute !important;
+		top: 80px !important;          /* ระยะจากขอบบนของ datatable */
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		z-index: 9999 !important;
+		
+		/* Style กล่อง */
+		background: rgba(255, 255, 255, 0.95) !important;
+		border-radius: 8px !important;
+		padding: 20px 30px !important;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
+		text-align: center !important;
+		width: auto !important;
+	}
+}
+
+
+#modal_impact_materials{
+	
+}
+
+
+
+
+
+
 
 
