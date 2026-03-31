@@ -156,14 +156,15 @@
 		}
 
 		table tr > th{
-			background-color:#{$blue-200};
+			background-color: rgb(226 234 247);
 			color:#{$blue-500};
 			font-size:13px !important;
 		}
 
 		table > tr > th,td *{
 			font-family: 'Kanit', sans-serif;
-			font-size: 13px !important;            
+			font-size: 13px !important;        
+			border: 1px solid #{$blue-400};    
 		}
     }
 
