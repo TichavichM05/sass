@@ -104,7 +104,7 @@
 /* end::button soft */
 
 
-#supplies_filter_form {
+#impact_filter_form {
 	.filter-search-box .form-control {
 		font-family: "Kanit", sans-serif;
 		font-size: 0.9rem;
@@ -115,7 +115,7 @@
 	
 }
 
-#modal_impact_materials {
+#modal_list_item {
 	.modal-title {
 		font-family: "Kanit", sans-serif;
 	}
@@ -146,6 +146,26 @@
 			}
 		}
 	}
+
+    .gtw-table-custom{
+        border-radius: 0.25rem !important;
+        border: 1px solid #{$blue-400};
+
+		table thead tr {
+			height: 35px;
+		}
+
+		table tr > th{
+			background-color:#{$blue-200};
+			color:#{$blue-500};
+			font-size:13px !important;
+		}
+
+		table > tr > th,td *{
+			font-family: 'Kanit', sans-serif;
+			font-size: 13px !important;            
+		}
+    }
 
 	$size-checkbox: 1.1rem;
 	.custom-checkbox {
