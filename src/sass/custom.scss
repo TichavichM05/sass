@@ -1,7 +1,9 @@
 @use 'sass:color';
 // Bootstrap 5
 @import "bootstrap_bs5/functions";
-@import "bootstrap_bs5/variables";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
 
 
 .shift-schedule-bottom-table {
@@ -112,8 +114,17 @@
 }
 
 
-#modal_impact_materials{
-	
+#modal_impact_items {
+	.gtw-table-custom {
+		table tfoot {
+			.current-page,.btn-more {
+				font-family: 'Kanit', sans-serif;
+			}
+			.current-page {
+				font-size: 11px !important;
+			}
+		}
+	}
 }
 
 
