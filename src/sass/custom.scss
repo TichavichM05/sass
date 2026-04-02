@@ -1,7 +1,9 @@
 @use 'sass:color';
 // Bootstrap 5
 @import "bootstrap_bs5/functions";
-@import "bootstrap_bs5/variables";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
 
 
 .shift-schedule-bottom-table {
@@ -109,6 +111,11 @@
 		text-align: center !important;
 		width: auto !important;
 	}
+}
+
+
+#modal_impact_materials{
+	
 }
 
 
