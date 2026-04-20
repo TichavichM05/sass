@@ -1,0 +1,53 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+$border-color: $gray-500;
+
+.nav-tabs-gtw {
+    ul.nav-tabs {
+        background-color: #FFEBCD !important;
+        border-radius: $border-radius-lg;
+        padding-top: map-get($spacers, 2);
+        border:1px solid #{$border-color};
+    }
+    li.nav-item{
+        margin: 0 #{map-get($spacers, 2)} -2px 0;
+        &:first-of-type{
+            margin-left: map-get($spacers, 2);
+        }
+    }
+    .nav-link{
+        font-size: 14px;
+        font-family: 'Kanit', sans-serif;
+        border-top-right-radius: $border-radius-lg;
+        border-top-left-radius: $border-radius-lg;
+        padding-top: map-get($spacers, 2);
+        padding-bottom: map-get($spacers, 2);
+        color:#{$blue-600};
+        &.active {
+            border-bottom: none !important;
+            background-color: #{$white} !important;
+            border-top:1px solid #{$border-color} !important;
+            border-left:1px solid #{$border-color} !important;
+            border-right:1px solid #{$border-color} !important;
+            color:#{$blue-800} !important;
+        }
+        &:hover{
+            background-color: #{$blue-400};
+            color:color.scale($blue-100, $lightness: 70%);
+        }
+    }
+    .tab-content{
+        border-left:1px solid #{$border-color};
+        border-right:1px solid #{$border-color};
+        border-bottom:1px solid #{$border-color};
+        border-radius: $border-radius-lg;
+    }
+}
+
+
+
+
