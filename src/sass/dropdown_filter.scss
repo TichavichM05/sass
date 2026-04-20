@@ -1,0 +1,44 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+.dropdown-filter {
+	.btn.checkbox-toggle{
+		font-size: 1em;
+		font-weight: 400;
+		border-radius: 50rem;
+		position: relative;
+		padding-left: 2rem;
+
+		&::before{
+			content: '';
+			position: absolute;
+			left: 0.7rem;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 16px;
+			height: 16px;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			background-color: #fff;
+		}
+		&::after{
+			border: unset;
+		}
+	}
+	input:checked + .checkbox-toggle::before {
+		background-color: #007bff;
+		border-color: #007bff;
+	}
+	input:checked + .checkbox-toggle::after {
+		content: '✔';
+		position: absolute;
+		left: 0.75rem;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 11px;
+		color: white;
+	}
+}
