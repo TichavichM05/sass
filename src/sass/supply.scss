@@ -6,7 +6,7 @@
 
 $border-color: $gray-500;
 
-.nav-tabs-gtw {
+.nav-tabs-supplies-con-gtw {
     ul.nav-tabs {
         background-color: #FFEBCD !important;
         border-radius: $border-radius-lg;
@@ -45,7 +45,28 @@ $border-color: $gray-500;
         border-right:1px solid #{$border-color};
         border-bottom:1px solid #{$border-color};
         border-radius: $border-radius-lg;
+		padding: 0.8rem;	
     }
+
+	.table-custom{
+		border-radius: 0.25rem !important;
+		border: 1px solid #{$blue-200};
+		table {
+			thead tr {
+				th {
+					background-color: color.scale($blue-100, $lightness: 50%);
+					font-size: 13px !important;
+					font-family: 'Kanit', sans-serif;
+				}
+			}
+			tbody tr {
+				td {
+					font-size: 13px !important;
+					font-family: 'Kanit', sans-serif;
+				}
+			}
+		}
+	}
 }
 
 
