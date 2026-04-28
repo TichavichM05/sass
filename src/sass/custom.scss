@@ -114,6 +114,53 @@
 }
 
 
+/* begin::button soft */
+@mixin btn-gtw($color, $name) {
+	.btn-gtw-#{$name} {
+		border-radius: #{$border-radius-lg};
+		color: #{$white};
+		background-color: $color;
+		border-color: color.scale($color, $lightness: -10%);	
+		&:hover {
+			color: #{$white};
+			background-color: color.change($color, $lightness: 50%, $saturation: 50%);
+			border-color: color.change($color, $lightness: 40%, $saturation: 70%);
+		}	
+		&:focus,
+		&.focus {
+			box-shadow: 0 0 0 0.2rem color.change($color, $lightness: 70%, $saturation: 60%, $alpha: 0.8);
+		}	
+		&.disabled,
+		&:disabled {
+			color: #{$white};
+			background-color: color.change($color, $lightness: 45%, $saturation: 60%);
+			border-color: color.change($color, $lightness: 40%, $saturation: 60%);
+		}	
+		&:not(:disabled):not(.disabled):active,
+		&:not(:disabled):not(.disabled).active,
+		.show > &.dropdown-toggle {
+			color: #{$white};
+			background-color: color.change($color, $lightness: 50%, $saturation: 40%);
+			border-color: color.change($color, $lightness: 50%, $saturation: 30%);
+		}		
+		&:not(:disabled):not(.disabled):active:focus,
+		&:not(:disabled):not(.disabled).active:focus,
+		.show > &.dropdown-toggle:focus {
+			box-shadow: 0 0 0 0.2rem color.change($color, $lightness: 70%, $saturation: 60%, $alpha: 0.8);
+		}
+	}
+}
+
+  $theme-colors: (
+	"primary": #0d6efd,
+  );  
+
+  @each $name, $color in $theme-colors {
+	@include btn-gtw($color, $name);
+  }
+/* end::button soft */
+
+
 
 
 
