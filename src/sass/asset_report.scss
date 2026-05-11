@@ -1,0 +1,47 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+/* begin::daterange picker */
+.button-date-range {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    position: relative;	
+    padding-right: 28px;
+	padding-top:0;
+	padding-bottom:0;
+	text-align: left;
+	&::after {
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+		content: "\F0D7";
+		position: absolute;
+		right: 8px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size:12px;
+	}
+	.control-date-range {	
+		width: 0;
+		height: 30px;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	i {
+		font-size: 14px;		
+	}
+	.date-range-text {
+		font-size: 13px;
+		color: #{$black};
+	}
+	&:hover{
+		.date-range-text {
+			color: #{$white};
+		}
+	}
+}
+/* end::daterange picker */
