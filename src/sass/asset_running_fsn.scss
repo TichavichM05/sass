@@ -274,7 +274,7 @@ $bg-hover: $gray-100;
 }
 
 .block-text-input {
-    width: 150px; // ปรับขนาดความกว้าง
+    width: 130px; // ปรับขนาดความกว้าง
     &:focus {
         border-color: $info-color;
         box-shadow: 0 0 0 2px rgba($info-color, 0.2);
