@@ -1,0 +1,124 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+$minimal-colors: (
+    "blue": $primary,
+);
+
+@each $name, $color in $minimal-colors {
+    .btn-minimal-#{$name} {
+        $minimal-brand: $color;
+        $minimal-brand-hover: shade-color($color, 10%);
+        $minimal-brand-active: shade-color($color, 20%);        
+        $minimal-bg: tint-color($color, 95%);
+        $minimal-bg-hover: tint-color($color, 90%);
+        $minimal-bg-active: tint-color($color, 85%);
+        $minimal-border: tint-color($color, 70%);
+        $minimal-shadow: 0 1px 2px 0 rgba($color, 0.08);
+        $minimal-shadow-hover: 0 4px 12px -2px rgba($color, 0.15);
+        $minimal-shadow-active: inset 0 2px 4px 0 rgba($color, 0.1);
+        $minimal-focus-ring: 0 0 0 3px rgba($color, 0.15);
+
+        background-color: $minimal-bg;
+        border: 1px solid $minimal-border;
+        color: $minimal-brand;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+        border-radius: $border-radius-lg;
+        box-shadow: $minimal-shadow;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none !important;
+
+        &:hover {
+            background-color: $minimal-bg-hover;
+            border-color: $minimal-brand;
+            color: $minimal-brand-hover;
+            box-shadow: $minimal-shadow-hover;
+            transform: translateY(-1.5px);
+        }
+
+        &:active, 
+        &.active {
+            background-color: $minimal-bg-active !important;
+            border-color: $minimal-brand-active !important;
+            transform: translateY(0);
+            box-shadow: $minimal-shadow-active !important;
+        }
+
+        &:focus {
+            box-shadow: $minimal-focus-ring;
+        }
+
+        i {
+            color: $minimal-brand;
+            transition: color 0.2s;
+        }
+        
+        &:hover i {
+            color: $minimal-brand-hover;
+        }
+    }
+}
+
+
+#modal_update_federal_stock_number{
+	.input-container {
+		background-color: map-get($grays, "100");
+		border: 1px solid map-get($grays, "300");
+		border-radius: $border-radius-xl;
+		padding: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
+		transition: all 0.3s;
+
+		&:focus-within {
+			background-color: tint-color(map-get($grays, "100"), 95%);
+			border-color: map-get($blues, "blue-600");
+			box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+		}
+	}
+	.segment-content {
+		font-size: 1.4rem;
+		font-weight: 500;
+		color: map-get($grays, "700");
+		margin-right: 5px;
+	}
+	.input-pattern-number {
+		width: 100px;
+		height: 40px;
+		border: 2px solid map-get($grays, "300");
+		padding-left: map-get($spacers, "2");
+		padding-right: map-get($spacers, "2");
+		border-radius: $border-radius-lg;
+		text-align: center;
+		font-size: 1.4rem;
+		font-weight: 500;
+		outline: none;
+		transition: border-color 0.2s;
+	}
+	.input-pattern-number:focus {
+		border-color: map-get($grays, "400");
+	}
+	.input-manual-number {
+		width: 100%;
+		border: 2px solid map-get($grays, "300");
+		padding-left: map-get($spacers, "2");
+		padding-right: map-get($spacers, "2");
+		border-radius: $border-radius-lg;
+		padding: 2px 15px;
+		font-size: 1.4rem;
+		font-weight: 500;
+		text-align: center;
+		outline: none;
+	}
+}
+
+
