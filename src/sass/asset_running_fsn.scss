@@ -19,7 +19,7 @@ $bg-white: $white;
 
 // Backgrounds (using Bootstrap 5 tint-color function for lighter tones)
 $bg-fsn: tint-color($primary-color, 95%);
-$bg-seq: tint-color($success-color, 95%);
+$bg-sequence: tint-color($success-color, 95%);
 $bg-year: tint-color($warning-color, 95%);
 $bg-text: tint-color($info-color, 95%);
 $bg-drag-over: tint-color($primary-color, 95%);
@@ -33,7 +33,7 @@ $bg-hover: $gray-100;
     min-height: 80px;
     background: $bg-white;
     border: 2px dashed $border-color;
-    border-radius: 8px;
+    border-radius: $border-radius-xl;
     padding: 1.25rem 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -135,7 +135,7 @@ $bg-hover: $gray-100;
     }
 
     &.type-sequence {
-        background: $bg-seq;
+        background: $bg-sequence;
         border: 1px solid $success-color;
         .block-label { background: $success-color; }
     }
@@ -282,11 +282,12 @@ $bg-hover: $gray-100;
 }
 
 .preview-result {
-    background: $text-dark;
-    color: $bg-white;
-    border-radius: 8px;
+    background: tint-color($gray-500, 95%);
+    color: $text-dark;
+    border-radius: $border-radius-xl;
     padding: 1.25rem 1.5rem;
-    font-size: 1.1rem;
+    border:2px solid map-get($grays, "200");
+    font-size: 1.5rem;
     min-height: 60px;
     display: flex;
     align-items: center;
@@ -296,24 +297,20 @@ $bg-hover: $gray-100;
 
     .empty-txt {
         color: $text-muted;
-        font-size: 0.95rem;
+        font-size: 1rem;
         letter-spacing: normal;
     }
-
     .segment-fsn {
-        color: tint-color($primary-color, 20%);
+        color: map-get($blues, "blue-700");
     }
-
     .segment-sequence {
-        color: tint-color($success-color, 20%);
+        color: map-get($greens, "green-700");
     }
-
     .segment-year {
-        color: tint-color($warning-color, 20%);
+        color: map-get($yellows, "yellow-700");
     }
-
     .segment-text {
-        color: tint-color($info-color, 20%);
+        color: map-get($cyans, "cyan-700");
     }
 }
 #options_year_modal{
