@@ -12,26 +12,16 @@ $info-color: $info;
 $danger-color: $danger;
 $text-dark: $dark;
 $text-muted: $secondary;
-$text-light: $gray-500;
 $border-color: $gray-400;
-$border-light: $gray-300;
-$bg-white: $white;
 
-// Backgrounds (using Bootstrap 5 tint-color function for lighter tones)
-$bg-fsn: tint-color($primary-color, 95%);
-$bg-sequence: tint-color($success-color, 95%);
-$bg-year: tint-color($warning-color, 95%);
-$bg-text: tint-color($info-color, 95%);
 $bg-drag-over: tint-color($primary-color, 95%);
-$bg-ghost: $gray-200;
-$bg-hover: $gray-100;
 
 .custom-control-label {
     cursor: pointer;
 }
 .builder-zone {
     min-height: 80px;
-    background: $bg-white;
+    background: $white;
     border: 2px dashed $border-color;
     border-radius: $border-radius-xl;
     padding: 1.25rem 1rem;
@@ -49,20 +39,19 @@ $bg-hover: $gray-100;
     .empty-msg {
         width: 100%;
         text-align: center;
-        color: $text-light;
+        color: map-get($grays, "500");
         font-size: 0.95rem;
         padding: 1rem 0;
     }
     .dropdown {
         .add-pattern-btn {
-            height: 55px;
             display: flex;
             align-items: center;
             border: 2px dashed $border-color;
             background: transparent;
             color: $text-muted;
-            border-radius: 6px;
-            padding: 8px 16px;
+            border-radius: $border-radius-lg;
+            padding: 0.6rem 1rem;
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
@@ -106,9 +95,8 @@ $bg-hover: $gray-100;
 
 .format-block {
     position: relative;
-    border-radius: 6px;
-    padding: 0 14px;
-    height: 55px;
+    border-radius: $border-radius-lg;
+	padding: 0.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,9 +104,8 @@ $bg-hover: $gray-100;
     text-align: center;
     cursor: default;
     user-select: none;
-    transition: box-shadow 0.2s, transform 0.15s, opacity 0.2s;
+    transition: box-shadow 0.2s, transform 0.15s, opacity 0.2s, border-color 0.2s;
     animation: blockIn 0.25s ease-out;
-
     &:hover {
         box-shadow: 0 3px 10px rgba($dark, 0.08);
         transform: translateY(-1px);
@@ -129,32 +116,43 @@ $bg-hover: $gray-100;
     }
 
     &.type-fsn {
-        background: $bg-fsn;
+        background: tint-color($primary-color, 95%);
         border: 1px solid $primary-color;
         .block-label { background: $primary-color; }
     }
 
     &.type-sequence {
-        background: $bg-sequence;
+        background: tint-color($success-color, 95%);
         border: 1px solid $success-color;
         .block-label { background: $success-color; }
+
+        &:focus-within {
+            border-color: color.adjust($success-color, $lightness: -12%);
+			background-color: tint-color($success-color, 97%);
+        }
     }
 
     &.type-year {
-        background: $bg-year;
+		min-width: 110px;
+        background: tint-color($warning-color, 95%);
         border: 1px solid $warning-color;
         .block-label { background: $yellow-600; }
     }
 
     &.type-text {
-        background: $bg-text;
+        background:  tint-color($info-color, 95%);
         border: 1px solid $info-color;
         .block-label { background: $cyan-600; }
+
+        &:focus-within {
+            border-color: color.adjust($info-color, $lightness: -12%);
+			background-color: tint-color($info-color, 97%);
+        }
     }
 
     .block-label {
         position: absolute;
-        top: -8px;
+        top: -10px;
         left: 8px;
         font-size: 0.6rem;
         color: $white;
@@ -176,7 +174,7 @@ $bg-hover: $gray-100;
     /* Action icons on block */
     .block-actions {
         position: absolute;
-        top: -8px;
+        top: -10px;
         right: -8px;
         display: flex;
         gap: 3px;
@@ -188,7 +186,7 @@ $bg-hover: $gray-100;
     &.ghost {
         opacity: 0.3;
         border: 2px dashed $border-color;
-        background: $bg-ghost;
+        background: map-get($grays, "200");
     }
 
     &.dragging {
@@ -240,45 +238,27 @@ $bg-hover: $gray-100;
 
 /* ===== Inputs inside blocks ===== */
 .block-text-input,
-.block-fsn-input,
 .block-sequence-input {
     width: 90px;
     text-align: center;
     font-weight: 700;
     color: $text-dark;
-    border: 1px solid $border-light;
-    border-radius: 4px;
+    border: none;
     padding: 2px 6px;
     font-size: 1rem;
-    background: $bg-white;
+    background: transparent;
 
     &:focus {
         outline: none;
     }
 }
 
-.block-fsn-input {
-    width: 120px;
-    &:focus {
-        border-color: $primary-color;
-        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
-    }
-}
-
 .block-sequence-input {
-    width: 120px; // ปรับขนาดความกว้าง
-    &:focus {
-        border-color: $success-color;
-        box-shadow: 0 0 0 2px rgba($success-color, 0.2);
-    }
+    width: 120px;
 }
 
 .block-text-input {
-    width: 130px; // ปรับขนาดความกว้าง
-    &:focus {
-        border-color: $info-color;
-        box-shadow: 0 0 0 2px rgba($info-color, 0.2);
-    }
+    width: 130px;
 }
 
 .preview-result {
