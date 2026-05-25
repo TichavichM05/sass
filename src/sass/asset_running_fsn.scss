@@ -133,10 +133,26 @@ $bg-drag-over: tint-color($primary-color, 95%);
     }
 
     &.type-year {
-		min-width: 110px;
         background: tint-color($warning-color, 95%);
         border: 1px solid $warning-color;
         .block-label { background: $yellow-600; }
+        
+        .block-value {
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        &:has(.reset-badge) {
+            .block-value {
+                font-size: 0.75rem; // ปรับลดขนาดลงหากมีการรีเซต
+                line-height: 1;
+            }
+            .reset-badge {
+                padding: 1px 5px !important;
+                font-size: 0.55rem !important;
+                margin-top: 2px !important;
+            }
+        }
     }
 
     &.type-text {
