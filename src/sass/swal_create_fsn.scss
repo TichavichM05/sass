@@ -1,0 +1,103 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+/* create fsn */
+.swal2-container-fsn {
+	.content-pattern-number {
+		background-color: map-get($grays, "100");
+		border: 1px solid map-get($grays, "300");
+		border-radius: $border-radius-xl;
+		padding: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
+		transition: all 0.3s;
+		flex-wrap: wrap;
+
+		&:focus-within {
+			background-color: tint-color(map-get($grays, "100"), 80%);
+			border-color: map-get($blues, "blue-600");
+			box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+		}
+	}
+
+
+	.input-pattern-wrapper {
+		position: relative;
+		display: inline-flex;
+		&::after{
+			content: attr(data-label);
+			position: absolute;
+			bottom: 100%;
+			left: 50%;
+			transform: translateX(-50%) translateY(5px);
+			background-color: #212529;
+			color: #fff;
+			padding: 4px 8px;
+			border-radius: 4px;
+			font-size: 12px;
+			white-space: nowrap;
+			opacity: 0;
+			pointer-events: none;
+			transition: all 0.2s ease;
+			z-index: 10;
+			margin-bottom: 6px;
+		}
+		&::before{
+			content: '';
+			position: absolute;
+			bottom: 100%;
+			left: 50%;
+			transform: translateX(-50%) translateY(5px);
+			border-width: 5px;
+			border-style: solid;
+			border-color: #212529 transparent transparent transparent;
+			opacity: 0;
+			pointer-events: none;
+			transition: all 0.2s ease;
+			z-index: 10;
+		}
+		&:focus-within::after,&:focus-within::before{
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+
+	.segment-content {
+		font-size: 1.3rem;
+		font-weight: 500;
+		color: map-get($grays, "700");
+		margin-right: 5px;
+	}
+	.input-pattern-number {
+		width: 120px;
+		height: 40px;
+		border: 2px solid map-get($grays, "300");
+		padding-left: map-get($spacers, 2);
+		padding-right: map-get($spacers, 2);
+		border-radius: $border-radius-lg;
+		text-align: center;
+		font-size: 1.3rem;
+		font-weight: 500;
+		outline: none;
+		transition: border-color 0.2s;
+	}
+	.input-pattern-number:focus {
+		border-color: map-get($grays, "400");
+	}
+
+	.swal2_preview_article_number{
+		position: relative;
+		margin-top: map-get($spacers, 2);
+		border: 0 solid transparent;
+		color: map-get($teals, "teal-700");
+		font-size:13px;
+	}
+}
+
+

@@ -71,7 +71,6 @@ $minimal-colors: (
 	transition: background-color 0.8s ease-in-out;
 }
 
-
 #modal_update_federal_stock_number{
 	.modal-title {
 		font-size: 18px;
@@ -139,6 +138,7 @@ $minimal-colors: (
 			justify-content: center;
 			gap: 2px;
 			transition: all 0.3s;
+			flex-wrap: wrap;
 	
 			&:focus-within {
 				background-color: tint-color(map-get($grays, "100"), 80%);
