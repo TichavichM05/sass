@@ -1,0 +1,30 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+@mixin badge-soft-variant($color, $name) {
+	.badge-soft.badge-soft-#{$name},
+	.badge-soft-#{$name} {
+		$soft-bg: tint-color($color, 88%);
+		$soft-color: shade-color($color, 28%);
+		$soft-border: tint-color($color, 72%);
+
+		background-color: $soft-bg;
+		color: $soft-color;
+		border-color: $soft-border;
+	}
+}
+
+.badge-soft {
+	font-size: 11px;
+	font-weight: $font-weight-medium;
+	padding: 0.1em 0.65em;
+	border-radius: $border-radius-lg;
+	border: 1px solid transparent;
+}
+
+@each $name, $color in $theme-colors {
+	@include badge-soft-variant($color, $name);
+}
