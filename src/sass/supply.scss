@@ -5,8 +5,65 @@
 @import "../../node_modules/bootstrap/scss/mixins";
 
 $border-color: $gray-500;
-
+.select2-lh-1-1{
+	line-height: 1.1;
+}
+.select2-container--default {
+	.select2-results__option {
+		.select2-person-label,.select2-position-label{
+			font-size: 11px;
+			margin-right: map-get($spacers, 1);
+			color: #a7adb3;
+		}
+		.select2-position-name{
+			font-size: 11px;
+			color: $gray-600;
+		}
+	}
+	.select2-results__option--highlighted {
+		.select2-person-label {
+			color: $white;
+		}
+		.select2-position-label{
+			color: #ffffff8a;
+		}
+		.select2-position-name{
+			color: #ffffff9c;
+		}
+	}
+}
 .nav-tabs-supplies-con-gtw {
+	.font-size-12{
+		font-size: 12px !important;
+	}
+	.font-size-14{
+		font-size: 14px !important;
+	}
+	.select2-custom {		
+		font-family: 'Kanit', sans-serif;
+		+ .select2-container--default {
+			.select2-selection{
+				align-content: center;
+			}
+			.select2-selection--single .select2-selection__rendered{
+				line-height:1.1;
+				height: auto;
+				.select2-person-label,.select2-position-label{
+					font-size: 11px;
+					margin-right: map-get($spacers, 1);
+					color: $gray-500
+				}
+				.select2-position-name{
+					font-size: 11px;
+					color: color.change($gray-600,$alpha: 0.82);
+				}
+			}
+			.select2-selection--single{
+				height: 40px !important;
+			}
+		}
+	}
+
     ul.nav-tabs {
         background-color: #FFEBCD !important;
         border-radius: $border-radius-lg;
@@ -47,12 +104,20 @@ $border-color: $gray-500;
         border-radius: $border-radius-lg;
 		padding: 0.8rem;	
     }
+	.btn-sm {
+		padding: $input-btn-padding-y-sm $input-btn-padding-x-sm !important;
+		font-size: $font-size-sm !important;
+		line-height: 1.5 !important;
+		border-radius: $border-radius-sm !important;
+	}
 
 	.table-custom{
 		border-radius: 0.25rem !important;
 		border: 1px solid #{$blue-200};
 		table {
 			thead tr {
+				height: 35px;
+				vertical-align: middle;
 				th {
 					background-color: color.scale($blue-100, $lightness: 50%);
 					font-size: 13px !important;
@@ -63,6 +128,20 @@ $border-color: $gray-500;
 				td {
 					font-size: 13px !important;
 					font-family: 'Kanit', sans-serif;
+				}
+				.label-name {
+					font-size: 11px;
+					color: map-get($grays, "600");
+					margin-right: map-get($spacers, 2);
+				}
+				.label-position {
+					font-size: 11px;
+					color: map-get($grays, "600");
+					margin-right: map-get($spacers, 2);
+				}
+				.text-position {
+					font-size: 11px;
+					color: #99a0a6;
 				}
 			}
 		}
