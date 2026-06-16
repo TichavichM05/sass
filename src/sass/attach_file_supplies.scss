@@ -1,0 +1,96 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+.attach-files-supplies {
+	.file-icon {
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+		font-size: 1.1rem;
+		opacity: 0.9;
+
+		&[data-file-extension="pdf"]::before {
+			content: "\F1C1";
+			color: $red-400;
+		}
+		&[data-file-extension="doc"]::before,&[data-file-extension="docx"]::before {
+			content: "\F1C2";
+			color: $blue-400;
+		}
+		&[data-file-extension="xls"]::before,&[data-file-extension="xlsx"]::before {
+			content: "\F1C3";
+			color: $green-400;
+		}
+		&[data-file-extension="csv"]::before {
+			content: "\F6DD";
+			color: $teal-600;
+		}
+		&[data-file-extension="jpg"]::before,&[data-file-extension="jpeg"]::before,&[data-file-extension="png"]::before {
+			content: "\F1C5";
+			color: $blue-300;
+		}
+	}
+
+	.button-remove {
+		padding: $input-btn-padding-y-sm $input-btn-padding-x-sm !important;
+		font-size: $font-size-sm !important;
+		line-height: 1.5 !important;
+		border-radius: $border-radius-sm !important;
+	}
+
+	.btn {
+		font-size: 13px;
+	}
+
+	.allowed-extension{
+		color: map-get($blues,"blue-400");
+	}
+	.max-size{
+		color: map-get($reds,"red-400");
+	}
+
+	.table-custom{
+		border-radius: 0.25rem !important;
+		border: 1px solid map-get($yellows,'yellow-500');
+		overflow: hidden;
+		table {
+			thead tr {
+				height: 35px;
+				vertical-align: middle;
+				th {
+					background-color: #FFEBCD;
+					font-size: 13px !important;
+					font-family: 'Kanit', sans-serif;
+				}
+				th:first-of-type{
+					border-left:none !important;
+				}
+				th:last-of-type{
+					border-right:none !important;
+				}
+			}
+			thead tr:last-of-type th{
+				border-top:none !important;
+			}
+			tbody tr {
+				td:first-of-type{
+					border-left:none !important;
+				}
+				td:last-of-type{
+					border-right:none !important;
+				}
+				td {
+					font-size: 13px !important;
+					font-family: 'Kanit', sans-serif;
+				}
+			}
+			tbody tr:last-of-type td{
+				border-bottom:none !important;
+			}
+
+		}
+	}
+}
