@@ -4,8 +4,8 @@
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 
-
-.attach-files-article {
+$gtw-bg-thead: #FFEBCD;
+.attach-files-supplies {
 	.file-icon {
 		font-family: "Font Awesome 5 Free";
 		font-weight: 900;
@@ -52,6 +52,14 @@
 		color: map-get($reds,"red-400");
 	}
 
+	.table-header {
+		font-size: 14px;
+		font-weight: bold;
+		text-align: left;
+		padding-top: map-get($spacers, 2);
+		color: map-get($yellows,"yellow-800");			
+	}
+
 	.table-custom{
 		border-radius: 0.25rem !important;
 		border: 1px solid map-get($yellows,'yellow-500');
@@ -61,7 +69,7 @@
 				height: 35px;
 				vertical-align: middle;
 				th {
-					background-color: #FFEBCD;
+					background-color: $gtw-bg-thead;
 					font-size: 13px !important;
 					font-family: 'Kanit', sans-serif;
 				}
