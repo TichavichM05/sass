@@ -1,0 +1,156 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+.appeal-approval-modal{
+	.shift-color{
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+	}
+	
+	.action-btn-wrapper{
+		position: relative;
+	}
+	
+	.fail-alert{
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+	
+	.approval-completed{
+		opacity: .6;
+	}
+	
+	#appeal_history_button{
+		position: relative;
+	}
+	
+	.notification{
+		position: absolute;
+		top: 3px;
+		right: 3px;
+		width: 8px;
+		height: 8px;
+		background-color: orange;
+		border-radius: 50%;
+	}
+	.appeal-list-wrapper,.appeal-history-wrapper{
+		overflow: visible;
+	}
+	.container-appeal-approval{
+		max-height: 70vh;
+		overflow-y: auto;
+		.shift-badge-fill{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+		}
+		.attach-appeal-file{
+			position: relative;
+			display: inline-block;
+			cursor: pointer;
+			transition: all 0.2s;
+			&:hover{
+				transform: translateY(-2px);
+			}
+			i {
+				font-size:18px;
+			}	
+			span.badge{
+				position: absolute;
+				top: -3px;
+				right: -10px;
+				border-radius: 50%;
+				padding: 4px 7px;
+				font-size: 10px;
+				box-shadow: $box-shadow-sm;
+			}
+			div {
+				font-size:12px;
+			}
+		}
+		.message-container{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(255, 255, 255, 0.22);
+			z-index: 999;
+			font-size: 12px !important;
+		}
+		.empty-space{
+			height: 150px;			
+		}
+	}
+	.table-custom{
+		border-radius: $border-radius-lg !important;
+		border: 1px solid map-get($blues,'blue-400');
+		overflow: hidden;
+		position: relative;
+		table {
+			thead tr {
+				height: 35px;
+				vertical-align: middle;
+				th {
+					background-color: color.scale($blue-100, $lightness: 70%);
+					font-size: 13px !important;
+					font-family: 'Kanit', sans-serif;
+					border: 1px solid map-get($blues,'blue-100');
+					position: sticky;
+					top: 0;
+					z-index: 2;
+				}
+				th:first-of-type{
+					border-left:none !important;
+				}
+				th:last-of-type{
+					border-right:none !important;
+				}
+			}
+			thead tr:last-of-type th{
+				border-top:none !important;
+			}
+			tbody tr {
+				td:first-of-type{
+					border-left:none !important;
+				}
+				td:last-of-type{
+					border-right:none !important;
+				}
+				td {
+					font-size: 13px !important;
+					font-family: 'Kanit', sans-serif;
+					border: 1px solid map-get($blues,'blue-100');
+				}
+			}
+			tbody tr:last-of-type td{
+				border-bottom:none !important;
+			}
+
+		}
+	}}
+
+.swal2-container-appeal-approval{
+	.swal2-file-appeals {
+		display: flex;
+		align-items: center;
+		padding: 12px;
+		margin-bottom: 8px;
+		border: 1px solid #eee;
+		border-radius: 8px;
+		text-align: left;
+		transition: background 0.2s;
+	
+		&:hover{
+			background: #f9f9f9;
+		}
+	}
+}
