@@ -130,7 +130,7 @@ $btn-remove-main-color: #E06B80;
 }  
 
 
-.attach-files,.info-appeal,.swal2-file-appeals {
+.attach-files,.info-appeal,.swal2-container-appeal-approval {
 	.file-icon {
 		font-family: "Font Awesome 5 Free";
 		font-weight: 900;
@@ -145,36 +145,29 @@ $btn-remove-main-color: #E06B80;
 	}
 }
 
-.attach-files, .info-appeal,.swal2-file-appeals {
-	.file-icon[data-file-extension="pdf"]::before {
-		content: "\F1C1";
-		color: $red-400;
+.attach-files, .info-appeal,.swal2-container-appeal-approval {
+	.file-icon{
+		&[data-file-extension="pdf"]::before{
+			content: "\F1C1";
+			color: $red-400;
+		}
+		&[data-file-extension="doc"]::before, &[data-file-extension="docx"]::before{
+			content: "\F1C2";
+			color: $blue-400;
+		}
+		&[data-file-extension="xls"]::before, &[data-file-extension="xlsx"]::before{
+			content: "\F1C3";
+			color: $green-400;
+		}
+		&[data-file-extension="csv"]::before{
+			content: "\F6DD";
+			color: $teal-600;
+		}
+		&[data-file-extension="jpg"]::before, &[data-file-extension="jpeg"]::before, &[data-file-extension="png"]::before{
+			content: "\F1C5";
+			color: $blue-300;
+		}
 	}
-
-	.file-icon[data-file-extension="doc"]::before,
-	.file-icon[data-file-extension="docx"]::before {
-		content: "\F1C2";
-		color: $blue-400;
-	}
-
-	.file-icon[data-file-extension="xls"]::before,
-	.file-icon[data-file-extension="xlsx"]::before {
-		content: "\F1C3";
-		color: $green-400;
-	}
-
-	.file-icon[data-file-extension="csv"]::before {
-		content: "\F6DD";
-		color: $teal-600;
-	}
-
-	.file-icon[data-file-extension="jpg"]::before,
-	.file-icon[data-file-extension="jpeg"]::before,
-	.file-icon[data-file-extension="png"]::before {
-		content: "\F1C5";
-		color: $blue-300;
-	}
-
 	.file-actions {
 		display: flex;
 		gap: 0.5rem;

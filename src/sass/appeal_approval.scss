@@ -3,76 +3,31 @@
 @import "bootstrap_bs5/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
+@import "btn_minimal";
 
 .appeal-approval-modal{
-	.shift-color{
-		width: 15px;
-		height: 15px;
-		border-radius: 50%;
+	#approval_filter_form{
+		.filter-search-box input{
+			font-size:14px;
+		}
 	}
-	
-	.action-btn-wrapper{
-		position: relative;
-	}
-	
-	.fail-alert{
-		position: absolute;
-		top: 5px;
-		right: 5px;
-	}
-	
-	.approval-completed{
-		opacity: .6;
-	}
-	
 	#appeal_history_button{
 		position: relative;
-	}
-	
-	.notification{
-		position: absolute;
-		top: 3px;
-		right: 3px;
-		width: 8px;
-		height: 8px;
-		background-color: orange;
-		border-radius: 50%;
-	}
-	.appeal-list-wrapper,.appeal-history-wrapper{
-		overflow: visible;
-	}
-	.container-appeal-approval{
-		max-height: 70vh;
-		overflow-y: auto;
-		.shift-badge-fill{
-			width: 15px;
-			height: 15px;
+		.notification{
+			position: absolute;
+			top: 3px;
+			right: 3px;
+			width: 8px;
+			height: 8px;
+			background-color: orange;
 			border-radius: 50%;
 		}
-		.attach-appeal-file{
-			position: relative;
-			display: inline-block;
-			cursor: pointer;
-			transition: all 0.2s;
-			&:hover{
-				transform: translateY(-2px);
-			}
-			i {
-				font-size:18px;
-			}	
-			span.badge{
-				position: absolute;
-				top: -3px;
-				right: -10px;
-				border-radius: 50%;
-				padding: 4px 7px;
-				font-size: 10px;
-				box-shadow: $box-shadow-sm;
-			}
-			div {
-				font-size:12px;
-			}
-		}
+	}
+	.container-appeal-approval{
+		position: relative;
+		border-radius: $border-radius-lg !important;
+		border: 1px solid map-get($blues,'blue-400');
+		overflow: hidden;
 		.message-container{
 			display: flex;
 			justify-content: center;
@@ -86,21 +41,85 @@
 			z-index: 999;
 			font-size: 12px !important;
 		}
-		.empty-space{
-			height: 150px;			
+		.approval-completed{
+			opacity: .6;
+		}
+		.shift-badge-fill{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			border:1px solid black;
+		}
+		.shift-description{
+			font-size:11px;
+			color: map-get($grays,'500');
+		}
+		.attach-appeal-file{
+			position: relative;
+			display: inline-block;
+			cursor: pointer;
+			transition: all 0.2s;
+			opacity: 0.8;
+			&:hover{
+				opacity: 1;
+				transform: translateY(-2px);
+			}
+			i {
+				font-size:18px;
+			}
+			div {
+				font-size:12px;
+			}
+			span.badge{
+				position: absolute;
+				top: -3px;
+				right: -10px;
+				border-radius: 50%;
+				padding: 4px 7px;
+				font-size: 10px;
+				box-shadow: $box-shadow-sm;
+			}
+		}
+		.group-header{
+			cursor: pointer;
+			user-select: none;
+			font-size: 14px;
+		}
+		.action-controls{
+			position: relative;
+			.tooltip-message-error{
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+		}
+		.load-more-container{
+			@include btn-minimal-variants((
+				"green": $success,
+			));
+			.spinner {
+				text-align: center;
+				padding-top: map-get($spacers,3);
+				padding-bottom: map-get($spacers,3);
+				font-size: 13px;
+				color: map-get($greens,'green-400');
+			}
+			.pagination-info {
+				font-size: 11px;
+			}
 		}
 	}
-	.table-custom{
-		border-radius: $border-radius-lg !important;
-		border: 1px solid map-get($blues,'blue-400');
-		overflow: hidden;
-		position: relative;
+	.table-container{
+		height: 580px;
+		max-height: calc(100vh - 100px);
+		overflow-y: auto;
+		overflow-x: hidden;
 		table {
 			thead tr {
 				height: 35px;
 				vertical-align: middle;
 				th {
-					background-color: color.scale($blue-100, $lightness: 70%);
+					background-color: color.scale($blue-100, $lightness: 40%);
 					font-size: 13px !important;
 					font-family: 'Kanit', sans-serif;
 					border: 1px solid map-get($blues,'blue-100');
@@ -129,17 +148,35 @@
 					font-size: 13px !important;
 					font-family: 'Kanit', sans-serif;
 					border: 1px solid map-get($blues,'blue-100');
+					&:hover {
+						opacity: 1;
+					}
 				}
 			}
-			tbody tr:last-of-type td{
-				border-bottom:none !important;
-			}
-
 		}
 	}}
 
 .swal2-container-appeal-approval{
-	.swal2-file-appeals {
+	.swal2-popup{
+		border-radius: $border-radius-lg;
+	}
+	.container-attach-files{
+		max-height: 400px;
+		overflow-y: auto;
+		margin-top: 15px;
+	}	
+	.alert-message-warning {
+		text-align: center;
+		color: map-get($yellows,'yellow-800');
+		background-color: map-get($yellows,'yellow-100');;
+		border: 1px solid map-get($yellows,'yellow-200');
+		margin-bottom: 8px;
+		font-size: 13px;
+		padding: map-get($spacers,3);
+		border-radius: $border-radius-sm;
+	}
+
+	.attach-appeal-files {
 		display: flex;
 		align-items: center;
 		padding: 12px;
@@ -148,9 +185,46 @@
 		border-radius: 8px;
 		text-align: left;
 		transition: background 0.2s;
-	
+		box-shadow: $box-shadow-sm;	
 		&:hover{
 			background: #f9f9f9;
+			.file-name{
+				color: map-get($grays,'900');
+			}
+			.file-size{
+				color: map-get($grays,'800');
+				span {
+					color: map-get($grays,'700');
+				}
+			}
+			.file-updated{
+				color: map-get($grays,'800');
+				span {
+					color: map-get($grays,'700');
+				}
+			}
+		}
+		.file-name {
+			font-weight: bold;
+			max-width: 220px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: map-get($grays,'700');
+		}
+		.file-size {
+			font-size: 11px;
+			color: map-get($grays,'600');
+			span {
+				font-weight: bold;
+			}
+		}
+		.file-updated{
+			font-size: 11px;
+			color: map-get($grays,'600');
+			span {
+				font-weight: bold;
+			}
 		}
 	}
 }

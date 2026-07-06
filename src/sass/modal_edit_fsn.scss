@@ -3,68 +3,11 @@
 @import "bootstrap_bs5/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
+@import "btn_minimal";
 
-
-$minimal-colors: (
-    "blue": $primary,
-);
-
-@each $name, $color in $minimal-colors {
-    .btn-minimal-#{$name} {
-        $minimal-brand: $color;
-        $minimal-brand-hover: shade-color($color, 10%);
-        $minimal-brand-active: shade-color($color, 20%);        
-        $minimal-bg: tint-color($color, 95%);
-        $minimal-bg-hover: tint-color($color, 90%);
-        $minimal-bg-active: tint-color($color, 85%);
-        $minimal-border: tint-color($color, 70%);
-        $minimal-shadow: 0 1px 2px 0 rgba($color, 0.08);
-        $minimal-shadow-hover: 0 4px 12px -2px rgba($color, 0.15);
-        $minimal-shadow-active: inset 0 2px 4px 0 rgba($color, 0.1);
-        $minimal-focus-ring: 0 0 0 3px rgba($color, 0.15);
-
-        background-color: $minimal-bg;
-        border: 1px solid $minimal-border;
-        color: $minimal-brand;
-        font-weight: 500;
-        letter-spacing: 0.01em;
-        padding-left: 1.1rem;
-        padding-right: 1.1rem;
-        border-radius: $border-radius-lg;
-        box-shadow: $minimal-shadow;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        outline: none !important;
-
-        &:hover {
-            background-color: $minimal-bg-hover;
-            border-color: $minimal-brand;
-            color: $minimal-brand-hover;
-            box-shadow: $minimal-shadow-hover;
-            transform: translateY(-1.5px);
-        }
-
-        &:active, 
-        &.active {
-            background-color: $minimal-bg-active !important;
-            border-color: $minimal-brand-active !important;
-            transform: translateY(0);
-            box-shadow: $minimal-shadow-active !important;
-        }
-
-        &:focus {
-            box-shadow: $minimal-focus-ring;
-        }
-
-        i {
-            color: $minimal-brand;
-            transition: color 0.2s;
-        }
-        
-        &:hover i {
-            color: $minimal-brand-hover;
-        }
-    }
-}
+@include btn-minimal-variants((
+	"blue": $primary,
+));
 
 .highlight-input-success {
 	background-color: #d4edda !important;
