@@ -29,7 +29,27 @@ $gtw-border-radius: 0.375rem;  //border-md
 			position: static !important;
 		}
 		table{
-			border-collapse: collapse !important;
+			border-collapse: collapse !important;		
+			th:not(:first-child),
+			td:not(:first-child) {
+				border-left: 1px solid $black !important;
+			}
+			tbody td {
+				border-top: 1px solid $black !important;
+			}
+			thead tr:first-child th:first-of-type {
+				border-top-left-radius: $gtw-border-radius !important;
+			}
+			thead tr:first-child th:last-of-type {
+				border-top-right-radius: $gtw-border-radius !important;
+			}
+			tbody tr:last-of-type td:first-of-type {
+				border-bottom-left-radius: $gtw-border-radius !important;
+			}
+			tbody tr:last-of-type td:last-of-type {
+				border-bottom-right-radius: $gtw-border-radius !important;
+			}
+
 			thead tr {
 				&:last-of-type th{
 					border-top:none !important;
@@ -63,36 +83,53 @@ $gtw-border-radius: 0.375rem;  //border-md
 		margin: map-get($spacers, 0) !important;
 		border-collapse: separate !important;
 		border-spacing: 0;
+		border: none !important;
 		th,td{
 			border:1px solid $black;
 			vertical-align: middle;
 			font-size: 13px; 
 		}
-		thead tr {
-			height: 35px;
+		th:not(:first-child),
+		td:not(:first-child) {
+			border-left: none !important;
+		}
+		tbody td {
+			border-top: none !important;
+		}
+		th:first-child,
+		td:first-child {
+			border-left: 1px solid $black;
+		}
+		thead tr:first-child th {
+			border-top: 1px solid $black;
+		}
+
+		thead tr {			
 			vertical-align: middle;
+			height: 35px !important;
 			&:first-child {
 				th {
 					&:first-child{
-						border-top-left-radius: $gtw-border-radius !important;	/* มุมบนซ้าย */
+						border-top-left-radius: $gtw-border-radius !important;
 					}
 					&:last-child{
-						border-top-right-radius: $gtw-border-radius !important;	/* มุมบนขวา */
+						border-top-right-radius: $gtw-border-radius !important;
 					}
 				}
 			}
 			th {
 				background-color: $gtw-bg-thead;
 				font-family: 'Kanit', sans-serif;
+				font-size: 14px !important;					
 			}
 		}
 		tbody tr {
 			&:last-child {
 				td:first-child{
-					border-bottom-left-radius: $gtw-border-radius !important; 	/* มุมล่างซ้าย */
+					border-bottom-left-radius: $gtw-border-radius !important;
 				}
 				td:last-child{
-					border-bottom-right-radius: $gtw-border-radius !important; 	/* มุมล่างขวา */
+					border-bottom-right-radius: $gtw-border-radius !important;
 				}
 			}			
 			&:nth-last-of-type(odd){
@@ -100,7 +137,8 @@ $gtw-border-radius: 0.375rem;  //border-md
 			}
 			td {
 				font-family: 'Kanit', sans-serif;
-				padding: map-get($spacers, 1);
+				padding-left: map-get($spacers, 1);
+				padding-right: map-get($spacers, 1);
 			}
 		}	
 	}
