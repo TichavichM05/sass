@@ -258,3 +258,22 @@
 		}		
 	}
   }
+
+
+
+  #accordion_history{
+    button[data-toggle="collapse"] {
+		span.accordion-arrow-icon::before {
+			flex-shrink: 0;
+			margin-left: auto;
+			font-family: "simple-line-icons";
+			content: "\E604";
+			transition: transform .2s ease-in-out;
+		}
+		&:not(.collapsed) span.accordion-arrow-icon::before {
+			font-family: "simple-line-icons";
+			content: "\E607";
+			transform: rotate(-180deg);
+		}
+    }
+}
