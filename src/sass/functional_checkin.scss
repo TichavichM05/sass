@@ -1,0 +1,54 @@
+@use 'sass:color';
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+$gtw-bg-thead: #FFEBCD;
+.checkin-settings-container {
+	border-radius: $border-radius-lg !important;
+	border: 1px solid black;
+	overflow: hidden;
+	table {
+		border: none !important;
+		thead tr {
+			height: 35px;
+			vertical-align: middle;
+			th {
+				background-color: $gtw-bg-thead;
+				font-family: 'Kanit', sans-serif;
+				border: 1px solid black;
+			}
+			th:first-of-type{
+				border-left:none !important;
+			}
+			th:last-of-type{
+				border-right:none !important;
+			}
+		}
+		thead tr:last-of-type th{
+			border-top:none !important;
+		}
+		tbody {
+			tr {
+				td:first-of-type{
+					border-left:none !important;
+				}
+				td:last-of-type{
+					border-right:none !important;				
+				}
+				td {
+					font-family: 'Kanit', sans-serif;
+					border: 1px solid black;
+					.custom-switch .custom-control-label{
+						cursor: pointer;
+					}
+				}
+			}
+			tr:last-of-type td{
+				border-bottom:none !important;
+			}
+		}
+	}
+}
+

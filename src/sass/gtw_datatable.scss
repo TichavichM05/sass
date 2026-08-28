@@ -4,33 +4,47 @@
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 
-$gtw-bg-thead: #FFEBCD;
-$gtw-border-radius: 0.375rem;  //border-md
+:root {
+	--gtw-dt-bg-thead: #FFEBCD;
+	--gtw-dt-border-radius: 0.375rem; // border-md
+	--gtw-dt-border-color: #{$black};
+	--gtw-dt-font-family: "Kanit", sans-serif;
+	--gtw-dt-font-size: 13px;
+	--gtw-dt-th-font-size: 14px;
+	--gtw-dt-thead-height: 35px;
+	--gtw-dt-select-border-radius: #{$border-radius-lg};
+	--gtw-dt-cell-padding-y: #{map-get($spacers, 1)};
+	--gtw-dt-cell-padding-x: 0.375rem;
+	--gtw-dt-empty-color: #{map-get($yellows, "yellow-700")};
+	--gtw-dt-info-empty-color: #{map-get($yellows, "yellow-800")};
+	--gtw-dt-row-odd-bg: #{color.scale(map-get($grays, "100"), $lightness: 20%)};
+}
+
 .gtw-datatable-container{
 	width: 100%;
 	.dataTables_length{
-		font-family: 'Kanit', sans-serif;
-		font-size: 13px !important;
+		font-family: var(--gtw-dt-font-family);
+		font-size: var(--gtw-dt-font-size) !important;
 		select{
-			font-family: 'Kanit', sans-serif;
-			font-size: 14px;
-			border-radius: $border-radius-lg !important;
+			font-family: var(--gtw-dt-font-family);
+			font-size: var(--gtw-dt-th-font-size);
+			border-radius: var(--gtw-dt-select-border-radius) !important;
 		}
 	}
 	.dataTables_empty .datatable-text-empty{
-		color: map-get($yellows, 'yellow-700');
-		font-size: 13px !important;
+		color: var(--gtw-dt-empty-color);
+		font-size: var(--gtw-dt-font-size) !important;
 	}
 	.dataTables_info {
-		font-family: 'Kanit', sans-serif;
-		font-size: 13px !important;
+		font-family: var(--gtw-dt-font-family);
+		font-size: var(--gtw-dt-font-size) !important;
 		.info-text-empty {
-			color: map-get($yellows, 'yellow-800');
+			color: var(--gtw-dt-info-empty-color);
 		}
 	}
 	.table-container{
-		border: 1px solid $black;
-		border-radius: $gtw-border-radius !important;
+		border: 1px solid var(--gtw-dt-border-color);
+		border-radius: var(--gtw-dt-border-radius) !important;
 		.dropdown {
 			position: static !important;
 		}
@@ -38,22 +52,22 @@ $gtw-border-radius: 0.375rem;  //border-md
 			border-collapse: collapse !important;		
 			th:not(:first-child),
 			td:not(:first-child) {
-				border-left: 1px solid $black !important;
+				border-left: 1px solid var(--gtw-dt-border-color) !important;
 			}
 			tbody td {
-				border-top: 1px solid $black !important;
+				border-top: 1px solid var(--gtw-dt-border-color) !important;
 			}
 			thead tr:first-child th:first-of-type {
-				border-top-left-radius: $gtw-border-radius !important;
+				border-top-left-radius: var(--gtw-dt-border-radius) !important;
 			}
 			thead tr:first-child th:last-of-type {
-				border-top-right-radius: $gtw-border-radius !important;
+				border-top-right-radius: var(--gtw-dt-border-radius) !important;
 			}
 			tbody tr:last-of-type td:first-of-type {
-				border-bottom-left-radius: $gtw-border-radius !important;
+				border-bottom-left-radius: var(--gtw-dt-border-radius) !important;
 			}
 			tbody tr:last-of-type td:last-of-type {
-				border-bottom-right-radius: $gtw-border-radius !important;
+				border-bottom-right-radius: var(--gtw-dt-border-radius) !important;
 			}
 
 			thead tr {
@@ -91,9 +105,9 @@ $gtw-border-radius: 0.375rem;  //border-md
 		border-spacing: 0;
 		border: none !important;
 		th,td{
-			border:1px solid $black;
+			border:1px solid var(--gtw-dt-border-color);
 			vertical-align: middle;
-			font-size: 13px; 
+			font-size: var(--gtw-dt-font-size); 
 		}
 		th:not(:first-child),
 		td:not(:first-child) {
@@ -104,49 +118,49 @@ $gtw-border-radius: 0.375rem;  //border-md
 		}
 		th:first-child,
 		td:first-child {
-			border-left: 1px solid $black;
+			border-left: 1px solid var(--gtw-dt-border-color);
 		}
 		thead tr:first-child th {
-			border-top: 1px solid $black;
+			border-top: 1px solid var(--gtw-dt-border-color);
 		}
 
 		thead tr {			
 			vertical-align: middle;
-			height: 35px !important;
+			height: var(--gtw-dt-thead-height) !important;
 			&:first-child {
 				th {
 					&:first-child{
-						border-top-left-radius: $gtw-border-radius !important;
+						border-top-left-radius: var(--gtw-dt-border-radius) !important;
 					}
 					&:last-child{
-						border-top-right-radius: $gtw-border-radius !important;
+						border-top-right-radius: var(--gtw-dt-border-radius) !important;
 					}
 				}
 			}
 			th {
-				background-color: $gtw-bg-thead;
-				font-family: 'Kanit', sans-serif;
-				font-size: 14px !important;
+				background-color: var(--gtw-dt-bg-thead);
+				font-family: var(--gtw-dt-font-family);
+				font-size: var(--gtw-dt-th-font-size) !important;
 			}
 		}
 		tbody tr {
 			&:last-child {
 				td:first-child{
-					border-bottom-left-radius: $gtw-border-radius !important;
+					border-bottom-left-radius: var(--gtw-dt-border-radius) !important;
 				}
 				td:last-child{
-					border-bottom-right-radius: $gtw-border-radius !important;
+					border-bottom-right-radius: var(--gtw-dt-border-radius) !important;
 				}
 			}			
 			&:nth-last-of-type(odd){
-				background-color: color.scale(map-get($grays,'100'), $lightness: 20%);
+				background-color: var(--gtw-dt-row-odd-bg);
 			}
 			td {
-				font-family: 'Kanit', sans-serif;
-				padding-top: map-get($spacers, 1);
-				padding-bottom: map-get($spacers, 1);
-				padding-left: 0.375rem;
-				padding-right: 0.375rem;
+				font-family: var(--gtw-dt-font-family);
+				padding-top: var(--gtw-dt-cell-padding-y);
+				padding-bottom: var(--gtw-dt-cell-padding-y);
+				padding-left: var(--gtw-dt-cell-padding-x);
+				padding-right: var(--gtw-dt-cell-padding-x);
 			}
 		}	
 	}
