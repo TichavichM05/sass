@@ -162,6 +162,34 @@
 				padding-left: var(--gtw-dt-cell-padding-x);
 				padding-right: var(--gtw-dt-cell-padding-x);
 			}
-		}	
+		}
+
+		&.dataTable {
+			thead {
+				> tr {
+					> th {
+						&.sorting,&.sorting_asc,&.sorting_desc {
+							padding-left: 18px !important;
+							padding-right: 18px !important;
+							white-space: nowrap !important;
+						}
+					}
+				}
+				th {
+					&.sorting:before,&.sorting:after,&.sorting_asc:before,&.sorting_asc:after,&.sorting_desc:before,&.sorting_desc:after {
+						top: 50% !important;
+						bottom: auto !important;
+						transform: translateY(-50%) !important;
+						line-height: 1 !important;
+					}
+					&.sorting:before,&.sorting_asc:before,&.sorting_desc:before {
+						right: 10px !important;
+					}
+					&.sorting:after,&.sorting_asc:after,&.sorting_desc:after {
+						right: 4px !important;
+					}
+				}
+			}
+		}
 	}
 }
