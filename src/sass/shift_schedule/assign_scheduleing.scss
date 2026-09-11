@@ -337,6 +337,19 @@ $teal-color: #1c8884;
         background-color: #eafcde !important;
         border: 1px solid #8ac15b !important;
     }
+	.holiday-label {
+		font-size: 11px;
+		font-weight: 600;
+		color: #c82333;
+		line-height: 1.2;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	  }
+	  .day-off-summary-wrapper {
+		cursor: pointer;
+	  }
+
 }
 
 .manpower-calendar{
@@ -1009,12 +1022,27 @@ $teal-color: #1c8884;
 		border: 1px solid #f7e8c6;
 	}
 
+	.badge-light-red {
+		color: #c82333;
+		background-color: #fdf2f2;
+		padding: 0.25rem 0.3rem;
+		border: 1px solid #f8d7da;
+	}
+
 	li {
-		&:hover .badge-light-yellow {
-			color: #8e5710;
-			background-color: #fffce3;
-			padding: 0.25rem 0.3rem;
-			border: 1px solid #c3a86d;
+		&:hover {
+			.badge-light-yellow {
+				color: #8e5710;
+				background-color: #fffce3;
+				padding: 0.25rem 0.3rem;
+				border: 1px solid #c3a86d;
+			}
+			.badge-light-red {
+				color: #721c24;
+				background-color: #fce8e6;
+				padding: 0.25rem 0.3rem;
+				border: 1px solid #e0aeb2;
+			}
 		}
 
 		&.active .req-day-off {
@@ -1117,6 +1145,15 @@ $teal-color: #1c8884;
 			background-color: #eb4b76;
 			border: none;
 		}
+	}
+}
+
+.ui-datepicker td.day-locked-leave {
+	a,span {
+		background-color: #fce8e6 !important;
+		color: #c82333 !important;
+		border: 1px solid #e0aeb2 !important;
+		cursor: not-allowed !important;
 	}
 }
 
@@ -1255,42 +1292,61 @@ $teal-color: #1c8884;
       }
     }
   }
-
-  /* Light color badges for badges summary */
-  .badge-primary-light {
-    background-color: $blue-100;
-    color: $blue-800;
-	border-radius: $border-radius;
-  }
-  .badge-success-light {
-    background-color: $green-100;
-    color: $green-800;
-	border-radius: $border-radius;
-  }
-  .badge-warning-light {
-    background-color: $yellow-100;
-    color: $yellow-800;
-	border-radius: $border-radius;
-  }
-  .badge-info-light {
-    background-color: $indigo-100;
-    color: $indigo;
-	border-radius: $border-radius;
-  }
-  .badge-secondary-light {
-    background-color: $gray-100;
-    color: $gray-700;
-	border-radius: $border-radius;	
-  }
 }
 
 /* assign scheduler [end] */
 
+/* Light color badges for badges summary */
+.badge-primary-light {
+background-color: $blue-100;
+color: $blue-800;
+border-radius: $border-radius;
+}
+.badge-success-light {
+background-color: $green-100;
+color: $green-800;
+border-radius: $border-radius;
+}
+
+.badge-danger-light {
+background-color: $red-100;
+color: $red-800;
+border-radius: $border-radius;	
+}
+
+.badge-warning-light {
+background-color: $yellow-100;
+color: $yellow-800;
+border-radius: $border-radius;
+}
+.badge-info-light {
+background-color: $indigo-100;
+color: $indigo;
+border-radius: $border-radius;
+}
+.badge-secondary-light {
+background-color: $gray-100;
+color: $gray-700;
+border-radius: $border-radius;	
+}
+
 
 @import "../btn_sm_minimal";
-
 $minimal-colors: (
 	"red": $danger,
 );
-
 @include btn-small-minimal-variants($minimal-colors);
+
+
+@mixin badge-soft-variant($color, $name) {
+	.badge-soft.badge-soft-#{$name},
+	.badge-soft-#{$name} {
+		$soft-bg: tint-color($color, 88%);
+		$soft-color: shade-color($color, 28%);
+		$soft-border: tint-color($color, 72%);
+
+		background-color: $soft-bg;
+		color: $soft-color;
+		border-color: $soft-border;
+	}
+}
