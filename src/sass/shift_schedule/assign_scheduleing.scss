@@ -337,18 +337,9 @@ $teal-color: #1c8884;
         background-color: #eafcde !important;
         border: 1px solid #8ac15b !important;
     }
-	.holiday-label {
-		font-size: 11px;
-		font-weight: 600;
-		color: #c82333;
-		line-height: 1.2;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	  }
-	  .day-off-summary-wrapper {
+	.day-off-summary-wrapper {
 		cursor: pointer;
-	  }
+	}
 
 }
 
@@ -1016,32 +1007,32 @@ $teal-color: #1c8884;
 	}
 
 	.badge-light-yellow {
-		color: #a97b3e;
-		background-color: #fffce5;
+		color: $yellow-700;
+		background-color: tint-color($yellow-100, 50%);
 		padding: 0.25rem 0.3rem;
-		border: 1px solid #f7e8c6;
+		border: 1px solid $yellow-200;
 	}
 
 	.badge-light-red {
-		color: #c82333;
-		background-color: #fdf2f2;
+		color: $red-600;
+		background-color: tint-color($red-100, 50%);
 		padding: 0.25rem 0.3rem;
-		border: 1px solid #f8d7da;
+		border: 1px solid $red-100;
 	}
 
 	li {
 		&:hover {
 			.badge-light-yellow {
-				color: #8e5710;
-				background-color: #fffce3;
+				color: $orange-700;
+				background-color: tint-color($yellow-100, 10%);
 				padding: 0.25rem 0.3rem;
-				border: 1px solid #c3a86d;
+				border: 1px solid $orange-300;
 			}
 			.badge-light-red {
-				color: #721c24;
-				background-color: #fce8e6;
+				color: $red-700;
+				background-color: tint-color($red-100, 10%);
 				padding: 0.25rem 0.3rem;
-				border: 1px solid #e0aeb2;
+				border: 1px solid $red-200;
 			}
 		}
 
@@ -1145,6 +1136,25 @@ $teal-color: #1c8884;
 			background-color: #eb4b76;
 			border: none;
 		}
+	}
+}
+
+.day-off-popover-content {
+	font-family: Kanit, sans-serif;
+	min-width: 260px;
+	max-width: 340px;
+	.badge-light-yellow {
+		color: $yellow-700;
+		background-color: $yellow-100;
+		padding: 0.25rem 0.3rem;
+		border: 1px solid $yellow-200;
+	}
+
+	.badge-light-red {
+		color: $red-600;
+		background-color: $red-100;
+		padding: 0.25rem 0.3rem;
+		border: 1px solid $red-100;
 	}
 }
 
@@ -1295,6 +1305,10 @@ $teal-color: #1c8884;
 }
 
 /* assign scheduler [end] */
+
+.font-size-xs{
+	font-size: 12px;
+}
 
 /* Light color badges for badges summary */
 .badge-primary-light {
