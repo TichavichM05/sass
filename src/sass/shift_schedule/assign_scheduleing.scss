@@ -1156,6 +1156,13 @@ $teal-color: #1c8884;
 		padding: 0.25rem 0.3rem;
 		border: 1px solid $red-100;
 	}
+
+	.badge-light-blue {
+		color: $blue-600;
+		background-color: $blue-100;
+		padding: 0.25rem 0.3rem;
+		border: 1px solid $blue-100;
+	}
 }
 
 .ui-datepicker td.day-locked-leave {
@@ -1167,15 +1174,16 @@ $teal-color: #1c8884;
 	}
 }
 
-#assign_schedule_progress{   
-	border-radius: 24px;
+#assign_schedule_progress{
+	height: auto !important;
+	border-radius: 0.5rem;
 		
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
       box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-      border-radius: 24px;
-      transition: width 0.3s ease-out;
+      border-radius: 10px;
+      transition: width 0.4s ease;
       position: relative;
       overflow: visible;
       width: 0%;
