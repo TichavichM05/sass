@@ -1,0 +1,122 @@
+// Bootstrap 5
+@import "bootstrap_bs5/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+:root {
+	--gtw-pb-font-family: "Kanit", sans-serif;
+
+	--gtw-pb-icon-bg: #{map-get($blues, "blue-100")};
+	--gtw-pb-icon-color: #{map-get($blues, "blue-500")};
+	--gtw-pb-icon-shadow-color: #{rgba($black, 0.1)};
+	--gtw-pb-icon-shadow-color-soft: #{rgba($black, 0.06)};
+	--gtw-pb-icon-shadow:
+		0 4px 6px -1px var(--gtw-pb-icon-shadow-color),
+		0 2px 4px -1px var(--gtw-pb-icon-shadow-color-soft);
+
+	--gtw-pb-title-color: #{map-get($grays, "900")};
+	--gtw-pb-status-color: #{map-get($grays, "600")};
+	--gtw-pb-text-color: #{map-get($grays, "800")};
+
+	--gtw-pb-track-bg: #{map-get($grays, "200")};
+	--gtw-pb-track-shadow-color: #{rgba($black, 0.05)};
+	--gtw-pb-track-shadow: inset 0 2px 4px var(--gtw-pb-track-shadow-color);
+
+	--gtw-pb-fill-from: #{map-get($blues, "blue-500")};
+	--gtw-pb-fill-to: #{map-get($indigos, "indigo-500")};
+	--gtw-pb-fill-bg: linear-gradient(to right, var(--gtw-pb-fill-from), var(--gtw-pb-fill-to));
+
+	--gtw-pb-shimmer-color: #{rgba($white, 0.4)};
+}
+
+@keyframes gtwPBShimmerEffect {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(100%); }
+}
+
+@keyframes gtwPBBounceIcon {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-10%); }
+}
+
+.gtw-progress-bar {
+	border-radius: 20px !important;
+	padding: 2em !important;
+
+	.progress-bar-swal2-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-family: var(--gtw-pb-font-family);
+		padding: 10px 0;
+
+		.swal2-icon {
+			width: 56px;
+			height: 56px;
+			background-color: var(--gtw-pb-icon-bg);
+			color: var(--gtw-pb-icon-color);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 16px;
+			box-shadow: var(--gtw-pb-icon-shadow);
+			animation: gtwPBBounceIcon 2s infinite;
+		}
+
+		.swal2-title {
+			font-size: 1.125rem;
+			font-weight: 600;
+			color: var(--gtw-pb-title-color);
+			margin-bottom: 8px;
+		}
+
+		.swal2-status {
+			font-size: 0.875rem;
+			color: var(--gtw-pb-status-color);
+			margin-bottom: 20px;
+			transition: color 0.3s ease;
+		}
+
+		.progress-text {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--gtw-pb-text-color);
+			margin-top: 16px;
+			font-variant-numeric: tabular-nums;
+		}
+
+		.progress-bar {
+			width: 100%;
+			height: 20px;
+			background-color: var(--gtw-pb-track-bg);
+			border-radius: 9999px;
+			overflow: hidden;
+			position: relative;
+			box-shadow: var(--gtw-pb-track-shadow);
+
+			.progress-bar-fill {
+				height: 100%;
+				background: var(--gtw-pb-fill-bg);
+				border-radius: 9999px;
+				transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				position: relative;
+
+				&::after {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background: linear-gradient(
+						90deg,
+						transparent 0%,
+						var(--gtw-pb-shimmer-color) 50%,
+						transparent 100%
+					);
+					animation: gtwPBShimmerEffect 1.5s infinite linear;
+				}
+			}
+		}
+	}
+}

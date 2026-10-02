@@ -1341,15 +1341,21 @@ background-color: $yellow-100;
 color: $yellow-800;
 border-radius: $border-radius;
 }
+
 .badge-info-light {
-background-color: $indigo-100;
-color: $indigo;
+background-color: rgb(211 238 243);
+color: $cyan-700;
 border-radius: $border-radius;
 }
 .badge-secondary-light {
 background-color: $gray-100;
 color: $gray-700;
 border-radius: $border-radius;	
+}
+.badge-indigo-light {
+background-color: $indigo-100;
+color: $indigo-700;
+border-radius: $border-radius;
 }
 
 
