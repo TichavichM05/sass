@@ -42,6 +42,22 @@
 			color: var(--gtw-dt-info-empty-color);
 		}
 	}
+    .dataTables_processing {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        z-index: 1050 !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        padding: 18px 28px !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        text-align: center !important;
+        width: auto !important;
+        min-width: 180px !important;
+    }
 	.table-container{
 		border: 1px solid var(--gtw-dt-border-color);
 		border-radius: var(--gtw-dt-border-radius) !important;
