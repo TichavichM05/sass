@@ -1364,17 +1364,3 @@ $minimal-colors: (
 	"red": $danger,
 );
 @include btn-small-minimal-variants($minimal-colors);
-
-
-@mixin badge-soft-variant($color, $name) {
-	.badge-soft.badge-soft-#{$name},
-	.badge-soft-#{$name} {
-		$soft-bg: tint-color($color, 88%);
-		$soft-color: shade-color($color, 28%);
-		$soft-border: tint-color($color, 72%);
-
-		background-color: $soft-bg;
-		color: $soft-color;
-		border-color: $soft-border;
-	}
-}

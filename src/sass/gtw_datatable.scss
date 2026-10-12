@@ -38,6 +38,8 @@
 	.dataTables_info {
 		font-family: var(--gtw-dt-font-family);
 		font-size: var(--gtw-dt-font-size) !important;
+		white-space: normal;
+		overflow-wrap: break-word;
 		.info-text-empty {
 			color: var(--gtw-dt-info-empty-color);
 		}
@@ -58,7 +60,20 @@
         width: auto !important;
         min-width: 180px !important;
     }
+	.dataTables_wrapper {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
+	}
 	.table-container{
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+
 		border: 1px solid var(--gtw-dt-border-color);
 		border-radius: var(--gtw-dt-border-radius) !important;
 		.dropdown {
