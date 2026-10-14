@@ -127,6 +127,17 @@
 					}
 				}
 			}
+			tfoot tr {
+				&:last-child > * {
+					border-bottom: none !important;
+				}
+				> :first-child {
+					border-left: none !important;
+				}
+				> :last-child {
+					border-right: none !important;
+				}			
+			}
 		}
 	}
 	table {
