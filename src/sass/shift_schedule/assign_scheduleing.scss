@@ -1362,5 +1362,6 @@ border-radius: $border-radius;
 @import "../btn_sm_minimal";
 $minimal-colors: (
 	"red": $danger,
+	"blue": $blue
 );
 @include btn-small-minimal-variants($minimal-colors);
