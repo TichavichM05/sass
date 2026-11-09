@@ -191,10 +191,10 @@ $badge-soft-colors: (
             width: 34px;
             height: 34px;
             border-radius: $border-radius-pill;
-            background: rgba($white, .08);
+            background: color.change(map-get($map: $grays, $key: "100"), $alpha: 0.25);
     
             &:hover {
-                background: $danger;
+                background: color.change(map-get($map: $reds, $key: "red-500"), $alpha: 0.80);
                 color: $white;
             }
         }
@@ -911,11 +911,6 @@ $border-radius: $border-radius-lg;
 .highlighted-target-form {
     animation: highlightForms 1.6s ease-out;
 }
-
-
-
-
-
 
 
 

@@ -7,7 +7,7 @@
 $main-color: #FFEBCD;
 
 :root {
-	--gtw-dt-bg-thead: $main-color;
+	--gtw-dt-bg-thead: #{$main-color};
 	--gtw-dt-border-radius: 0.375rem; // border-md
 	--gtw-dt-border-color: #{$black};
 	--gtw-dt-font-family: "Kanit", sans-serif;
@@ -352,15 +352,20 @@ $main-color: #FFEBCD;
 	$modern-scrollbar-thumb: shade-color($main-color, 18%);
 	$modern-scrollbar-hover: shade-color($main-color, 28%);
 	$modern-scrollbar-track: tint-color($main-color, 90%);
+	$modern-th-padding-x: #{map-get($spacers, 2)};
+	$modern-th-padding-y: .35rem;
+	$modern-td-padding-x: #{map-get($spacers, 2)};
+	$modern-td-padding-y: 0.3rem;
 
 	border: 1px solid $modern-border-color;
 	border-radius: var(--gtw-dt-border-radius);
 	position: relative;
 	background-color: $white;
 	box-shadow: 0 2px 6px 0 rgba($modern-border-color, 0.12);
-	overflow: hidden;
+	max-height: clamp(300px, calc(100vh - 500px), 85vh);
+	overflow-y: auto;
+	overflow-x: auto;
 
-	/* ตกแต่ง Scrollbar ให้เข้ากับโทนสีหลัก */
 	&::-webkit-scrollbar {
 		width: 6px;
 		height: 6px;
@@ -385,7 +390,6 @@ $main-color: #FFEBCD;
 		border-spacing: 0;
 		border: none !important;
 
-		/* ส่วนหัวตารางแบบ Sticky Header */
 		thead th {
 			position: sticky;
 			top: 0;
@@ -395,7 +399,10 @@ $main-color: #FFEBCD;
 			font-family: var(--gtw-dt-font-family);
 			font-size: var(--gtw-dt-th-font-size) !important;
 			font-weight: 600;
-			padding: 0.6rem 1rem !important;
+			padding-top: $modern-th-padding-y !important;
+			padding-bottom: $modern-th-padding-y !important;
+			padding-left: $modern-th-padding-x !important;
+			padding-right: $modern-th-padding-x !important;
 			vertical-align: middle;
 			border: none !important;
 			border-bottom: 1px solid $modern-border-color !important;
@@ -406,15 +413,17 @@ $main-color: #FFEBCD;
 			}
 		}
 
-		/* ส่วนเนื้อหาตาราง */
 		tbody td {
 			font-family: var(--gtw-dt-font-family);
 			font-size: var(--gtw-dt-font-size);
 			color: $gray-700;
 			vertical-align: middle;
-			padding: 0.55rem 1rem;
 			border: none !important;
 			border-bottom: 1px solid $modern-td-border-color !important;
+			padding-top: $modern-td-padding-y !important;
+			padding-bottom: $modern-td-padding-y !important;
+			padding-left: $modern-td-padding-x !important;
+			padding-right: $modern-td-padding-x !important;
 
 			&:not(:first-child) {
 				border-left: 1px solid $modern-td-border-color !important;
@@ -425,7 +434,6 @@ $main-color: #FFEBCD;
 			border-bottom: none !important;
 		}
 
-		/* สีสลับแถว */
 		tbody tr:nth-of-type(even) {
 			background-color: var(--gtw-dt-row-even-bg);
 		}
