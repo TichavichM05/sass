@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:gulp": "gulp --gulpfile src/cli/gulp.sass.mjs",
     "build:gulp": "gulp --gulpfile src/cli/gulp.sass.mjs sass",
-    "dev:sass": "sass --watch src/sass:dist/sass --no-source-map --style=expanded",
-    "build:sass": "sass src/sass:dist/sass --style=compressed --no-source-map",
+    "dev": "sass --watch src/sass:dist/sass --no-source-map --style=expanded",
+    "build": "sass src/sass:dist/sass --no-source-map --style=compressed",
     "logging:read": "node src/cli/read-log.mjs",
     "json:read": "node src/cli/read-json.mjs"
   },

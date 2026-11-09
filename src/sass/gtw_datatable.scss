@@ -4,8 +4,10 @@
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
 
+$main-color: #FFEBCD;
+
 :root {
-	--gtw-dt-bg-thead: #FFEBCD;
+	--gtw-dt-bg-thead: $main-color;
 	--gtw-dt-border-radius: 0.375rem; // border-md
 	--gtw-dt-border-color: #{$black};
 	--gtw-dt-font-family: "Kanit", sans-serif;
@@ -18,6 +20,7 @@
 	--gtw-dt-empty-color: #{map-get($yellows, "yellow-700")};
 	--gtw-dt-info-empty-color: #{map-get($yellows, "yellow-800")};
 	--gtw-dt-row-odd-bg: #{color.scale(map-get($grays, "100"), $lightness: 20%)};
+	--gtw-dt-row-even-bg: #{color.scale(map-get($grays, "100"), $lightness: 20%)};
 }
 
 .gtw-datatable-container{
@@ -335,6 +338,96 @@
 			&:hover i {
 				color: $minimal-brand-hover;
 			}
+		}
+	}
+}
+
+/* ============================================================ */
+/* SECTION: MODERN TABLE GTW (GLOBAL STANDALONE COMPONENT)      */
+/* ============================================================ */
+.modern-table-gtw {
+	$modern-border-color: shade-color($main-color, 22%);
+	$modern-th-border-color: shade-color($main-color, 14%);
+	$modern-td-border-color: shade-color($main-color, 10%);
+	$modern-scrollbar-thumb: shade-color($main-color, 18%);
+	$modern-scrollbar-hover: shade-color($main-color, 28%);
+	$modern-scrollbar-track: tint-color($main-color, 90%);
+
+	border: 1px solid $modern-border-color;
+	border-radius: var(--gtw-dt-border-radius);
+	position: relative;
+	background-color: $white;
+	box-shadow: 0 2px 6px 0 rgba($modern-border-color, 0.12);
+	overflow: hidden;
+
+	/* ตกแต่ง Scrollbar ให้เข้ากับโทนสีหลัก */
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	&::-webkit-scrollbar-track {
+		background: $modern-scrollbar-track;
+		border-radius: 0 var(--gtw-dt-border-radius) var(--gtw-dt-border-radius) 0;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: $modern-scrollbar-thumb;
+		border-radius: 3px;
+
+		&:hover {
+			background: $modern-scrollbar-hover;
+		}
+	}
+
+	table {
+		width: 100% !important;
+		margin: 0 !important;
+		border-collapse: separate !important;
+		border-spacing: 0;
+		border: none !important;
+
+		/* ส่วนหัวตารางแบบ Sticky Header */
+		thead th {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			background-color: var(--gtw-dt-bg-thead) !important;
+			color: $gray-900;
+			font-family: var(--gtw-dt-font-family);
+			font-size: var(--gtw-dt-th-font-size) !important;
+			font-weight: 600;
+			padding: 0.6rem 1rem !important;
+			vertical-align: middle;
+			border: none !important;
+			border-bottom: 1px solid $modern-border-color !important;
+			box-shadow: none !important;
+
+			&:not(:first-child) {
+				border-left: 1px solid $modern-th-border-color !important;
+			}
+		}
+
+		/* ส่วนเนื้อหาตาราง */
+		tbody td {
+			font-family: var(--gtw-dt-font-family);
+			font-size: var(--gtw-dt-font-size);
+			color: $gray-700;
+			vertical-align: middle;
+			padding: 0.55rem 1rem;
+			border: none !important;
+			border-bottom: 1px solid $modern-td-border-color !important;
+
+			&:not(:first-child) {
+				border-left: 1px solid $modern-td-border-color !important;
+			}
+		}
+
+		tbody tr:last-of-type td {
+			border-bottom: none !important;
+		}
+
+		/* สีสลับแถว */
+		tbody tr:nth-of-type(even) {
+			background-color: var(--gtw-dt-row-even-bg);
 		}
 	}
 }

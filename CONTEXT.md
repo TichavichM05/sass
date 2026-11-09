@@ -112,6 +112,7 @@ npx sass src/sass/badge_style.scss dist/sass/badge_style.css --no-source-map
 | `badge_style.scss` | Badge โทนอ่อน `.badge-soft-*` |
 | `button_minimal.scss` | ปุ่ม minimal `.btn-minimal-*` |
 | `swal_create_fsn.scss`, `modal_edit_fsn.scss`, `asset_running_fsn.scss` | งาน FSN |
+| `manage_multiple_assets.scss` | จัดการครุภัณฑ์หลายรายการ, อัปโหลดรูป, FSN Pattern, `.modern-table-gtw`, `.modal-latest-fsn-list` |
 | `shift_schedule/*` | ตารางเวร / ลายเซ็น / scheduling |
 | `attach_files.scss`, `dropdown_filter.scss`, `filter_multiple_selected.scss` | UI ฟอร์ม / ตัวกรอง |
 | `table_gtw.scss`, `style_dom_pdf.scss`, `style_dom_table.pdf.scss` | ตาราง / PDF |
@@ -200,4 +201,4 @@ Bootstrap CSS หลักต้องโหลดแยกจากโปรเ
 
 ---
 
-*อัปเดตล่าสุด: 2026-05 — ปรับแผนที่ไฟล์และ checklist เมื่อโครงสร้างเปลี่ยน*
+*อัปเดตล่าสุด: 2026-11 — เพิ่ม manage_multiple_assets.scss, .modern-table-gtw และ .modal-latest-fsn-list*
