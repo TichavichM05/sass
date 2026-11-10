@@ -10,13 +10,13 @@
 
 ```bash
 npm ci
-npm run build:sass
+npm run build
 ```
 
 ระหว่างแก้สไตล์ ใช้คำสั่ง watch:
 
 ```bash
-npm run dev:sass
+npm run dev
 ```
 
 `package.json` ยังไม่ได้กำหนด `engines` ของ Node.js โดย dependency `del@8.0.0` ใน lockfile ต้องการ Node.js `>=18` การตรวจคอมไพล์ครั้งนี้ใช้ Node.js `24.21.0` และ Dart Sass `1.89.2`
@@ -60,8 +60,8 @@ dist/
 
 | คำสั่ง | คำสั่งที่เรียกจริง | พฤติกรรม |
 | --- | --- | --- |
-| `npm run dev:sass` | `sass --watch src/sass:dist/sass --no-source-map --style=expanded` | คอมไพล์และเฝ้าดูการเปลี่ยนแปลง CSS แบบอ่านง่าย ไม่มี source map |
-| `npm run build:sass` | `sass src/sass:dist/sass --style=compressed --no-source-map` | คอมไพล์ครั้งเดียวแบบย่อขนาด ไม่มี source map |
+| `npm run dev` | `sass --watch src/sass:dist/sass --no-source-map --style=expanded` | คอมไพล์และเฝ้าดูการเปลี่ยนแปลง CSS แบบอ่านง่าย ไม่มี source map |
+| `npm run build` | `sass src/sass:dist/sass --no-source-map --style=compressed` | คอมไพล์ครั้งเดียวแบบย่อขนาด ไม่มี source map |
 | `npm run dev:gulp` | `gulp --gulpfile src/cli/gulp.sass.mjs` | ขอรัน task `default` แต่ไฟล์ปัจจุบันไม่มี task นี้ จึงยังใช้เป็นคำสั่งพัฒนา/watch ไม่ได้ |
 | `npm run build:gulp` | `gulp --gulpfile src/cli/gulp.sass.mjs sass` | รัน `sassAll()` คอมไพล์เฉพาะ SCSS ระดับ root ไป `dist/gulp/` แล้วจัดรูปแบบ CSS |
 | `npm run logging:read` | `node src/cli/read-log.mjs` | อ่าน `src/cli/mariadb-slow.log` แล้วเขียนทับ `src/cli/mariadb-slow.json` พร้อมแสดงข้อมูล |
@@ -116,7 +116,7 @@ npx sass src/sass/manage_multiple_assets.scss dist/sass/manage_multiple_assets.c
 - `sassProd()` เปลี่ยนชื่อผลลัพธ์ทุกไฟล์เป็นชื่อเดียวกัน ทำให้เขียนทับกัน ไม่ใช่การรวม CSS หลายไฟล์
 - `sassWatch()` มีทั้งปัญหา callback ที่ไม่มีนิยามและ glob ที่ไม่ครอบคลุมโฟลเดอร์ย่อย; ไม่มีการผูกเป็น `default` task
 
-หากต้องการ build/watch ตามโครงสร้าง SCSS ทั้งโปรเจกต์ ให้ใช้ `build:sass` และ `dev:sass` สำหรับ Gulp มี task เฉพาะที่เรียกได้ดังนี้ โดยทุกคำสั่งจะล้าง `dist/gulp/` ก่อนตามพฤติกรรมข้างต้น:
+หากต้องการ build/watch ตามโครงสร้าง SCSS ทั้งโปรเจกต์ ให้ใช้ `build` และ `dev` สำหรับ Gulp มี task เฉพาะที่เรียกได้ดังนี้ โดยทุกคำสั่งจะล้าง `dist/gulp/` ก่อนตามพฤติกรรมข้างต้น:
 
 ```bash
 npx gulp --gulpfile src/cli/gulp.sass.mjs select2

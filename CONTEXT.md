@@ -30,7 +30,7 @@ sass/
 │   └── cli/
 │       └── gulp.sass.mjs      ← pipeline แบบ Gulp (ทางเลือก)
 └── dist/               ← ผลลัพธ์ CSS (ไม่ commit — อยู่ใน .gitignore)
-    ├── sass/           ← จาก `npm run build:sass`
+    ├── sass/           ← จาก `npm run build`
     └── gulp/           ← จาก Gulp (ถ้าใช้)
 ```
 
@@ -41,17 +41,17 @@ sass/
 | คำสั่ง | ทำอะไร |
 |--------|--------|
 | `npm install` | ติดตั้ง dependencies (ครั้งแรก) |
-| `npm run dev:sass` | watch คอมไพล์ `src/sass` → `dist/sass` (expanded) |
-| `npm run build:sass` | build ทั้งหมดแบบ compressed |
+| `npm run dev` | watch คอมไพล์ `src/sass` → `dist/sass` (expanded) |
+| `npm run build` | build ทั้งหมดแบบ compressed |
 | `npm run dev:gulp` | watch ผ่าน Gulp |
 | `npm run build:gulp` | build ผ่าน Gulp |
 
 **ความต่างสำคัญ**
 
-- **`npm run build:sass`** — คอมไพล์ **ทุกไฟล์ `.scss` ใน `src/sass` รวม subfolder** → `dist/sass/` (โครงสร้าง mirror กับต้นทาง)  
+- **`npm run build`** — คอมไพล์ **ทุกไฟล์ `.scss` ใน `src/sass` รวม subfolder** → `dist/sass/` (โครงสร้าง mirror กับต้นทาง)  
   ตัวอย่าง: `src/sass/badge_style.scss` → `dist/sass/badge_style.css`
 - **Gulp** (`gulp.sass.mjs`) — คอมไพล์เฉพาะ **`src/sass/*.scss` ระดับ root** ไป `dist/gulp/`  
-  ไฟล์ใน `shift_schedule/` ต้องใช้ `npm run build:sass` (หรือคอมไพล์ไฟล์เดี่ยวด้วย `npx sass`)
+  ไฟล์ใน `shift_schedule/` ต้องใช้ `npm run build` (หรือคอมไพล์ไฟล์เดี่ยวด้วย `npx sass`)
 
 คอมไพล์ไฟล์เดียว (debug):
 
@@ -145,7 +145,7 @@ Bootstrap CSS หลักต้องโหลดแยกจากโปรเ
 - อ่านไฟล์ `.scss` ใกล้เคียงก่อนเขียนใหม่ (เลียนแพทเทิร์นเดิม)
 - ใช้ตัวแปร Bootstrap แทน hex ฮาร์ดโค้ด เมื่อทำได้
 - แก้เฉพาะไฟล์ที่เกี่ยวกับงานที่ขอ — scope เล็ก
-- รัน `npm run build:sass` หรือคอมไพล์ไฟล์เดียวหลังแก้ เพื่อตรวจ error
+- รัน `npm run build` หรือคอมไพล์ไฟล์เดียวหลังแก้ เพื่อตรวจ error
 - อัปเดตตาราง “แผนที่ไฟล์” ใน CONTEXT ถ้าเพิ่มโมดูลใหม่สำคัญ
 
 **ไม่ควรทำ**
@@ -173,7 +173,7 @@ Bootstrap CSS หลักต้องโหลดแยกจากโปรเ
 1. สร้าง `src/sass/<ชื่อฟีเจอร์>.scss` (หรือใส่ใน subfolder ที่เหมาะสม)
 2. ใส่หัว import Bootstrap ตามแบบด้านบน (ถ้าต้องใช้ token)
 3. เขียน class ให้สอดคล้อง HTML ในระบบหลัก
-4. `npm run build:sass` แล้วตรวจ `dist/sass/<ชื่อ>.css`
+4. `npm run build` แล้วตรวจ `dist/sass/<ชื่อ>.css`
 5. แจ้งทีมระบบหลักให้ `<link>` ไฟล์ CSS ใหม่
 6. (ถ้าต้องการ) เพิ่มแถวใน **แผนที่ไฟล์** ด้านบน
 
@@ -195,6 +195,7 @@ Bootstrap CSS หลักต้องโหลดแยกจากโปรเ
 
 | ไฟล์ | เนื้อหา |
 |------|---------|
+| `AGENTS.md` | ขั้นตอนและขอบเขตการทำงานสำหรับ AI agent |
 | `README.md` | คำอธิบายสั้น |
 | `.cursor/skills/sass-js-ts-html/SKILL.md` | แนวทาง SCSS/JS/HTML ทั่วไปสำหรับ Cursor |
 | `src/sass/bootstrap_bs5/_variables.scss` | token สีและ theme ของโปรเจกต์ |
