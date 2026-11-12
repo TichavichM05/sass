@@ -485,6 +485,10 @@ $border-radius: $border-radius-lg;
                 background: none;
                 color: var(--copy-muted);
                 padding: $spacer * .25;
+
+                &:focus,&:active{
+                    outline: none;
+                }
             }
         }
 
@@ -509,29 +513,14 @@ $border-radius: $border-radius-lg;
     .split-layout {
         display: flex;
         gap: $spacer * 1.5;
-        height: 520px;
-        height: clamp(320px, calc(92vh - 230px), 520px);
+        min-height: 520px;
+        max-height: calc(88vh - 180px);
+        height: auto;
 
-        .left-panel,
-        .right-panel {
-            min-width: 0;
-            background: $body-bg;
-            border: $border-width solid var(--copy-border);
-            border-radius: $border-radius-lg;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: $box-shadow-sm;
+        .panel-divider {
+            border-right: $border-width solid var(--copy-border);
         }
-    
-        .left-panel {
-            flex: 39;
-        }
-    
-        .right-panel {
-            flex: 61;
-        }
-    
+
         .panel-header {
             padding: ($spacer * .5) $spacer;
             min-height: 40px;
@@ -551,6 +540,49 @@ $border-radius: $border-radius-lg;
                     
             }
         }   
+
+        .left-panel {
+            flex: 38;
+        }
+    
+        .right-panel {
+            flex: 62;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            &.is-empty{
+                background-color: $gray-100;
+                border: $border-width solid var(--copy-border);
+                border-radius: $border-radius-lg;
+
+                .asset-detail-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: ($spacer * 2) $spacer;
+                }
+
+                .empty-state-content {
+                    font-size: $copy-font-size-sm;
+                    color: $gray-600;
+                }
+            }
+        }
+
+        .left-panel {
+            min-width: 0;
+            background: $body-bg;
+            border: $border-width solid var(--copy-border);
+            border-radius: $border-radius-lg;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: $box-shadow-sm;
+        }
+
+
+
     }
     
     .list-container {
@@ -703,81 +735,110 @@ $border-radius: $border-radius-lg;
     }
 
     .asset-detail-container {
+        --soft-card-border: #{$gray-200};
+        --soft-card-selected-border: #{$blue-100};
+        --soft-header-bg: #{$gray-100};
+        --soft-header-selected-bg: #{tint-color($blue-100, 75%)};
+        --soft-header-selected-border: #{tint-color($blue-100, 45%)};
+        --soft-item-checked-bg: #{tint-color($blue-100, 90%)};
+        --soft-item-checked-border: #{tint-color($blue-100, 45%)};
+        --soft-item-hover-bg: #{$gray-100};
+        --soft-item-hover-border: #{$gray-200};
+        --soft-checkbox-border: #{$gray-400};
+        --soft-checkbox-active: rgb(155 182 223);
+        --soft-checkbox-active-border: #{tint-color($blue-300, 55%)};
+        --soft-checkbox-hover-border: #{tint-color($primary, 55%)};
+        --soft-unselected-bg: #{tint-color($gray-100, 65%)};
+        --soft-unselected-border: #{$gray-300};
+        --soft-locked-bg: #{tint-color($gray-100, 40%)};
+        --soft-locked-border: #{tint-color($gray-200, 35%)};
+        --soft-focus-ring: #{color.change($primary, $alpha: .35)};
+        --soft-focus-ring-soft: #{color.change($primary, $alpha: .25)};
+
         flex: 1;
         min-height: 0;
         overflow-y: auto;
-        padding: ($spacer * .75) $spacer;
-        background: $light-bg-subtle;
+        background: transparent;
 
         .asset-info-card {
-            border: $border-width solid var(--copy-border);
+            border: $border-width solid var(--soft-card-border);
             border-radius: $border-radius-lg;
             margin-bottom: $spacer * .75;
             overflow: hidden;
             background: $body-bg;
-    
+            transition: border-color .2s ease, box-shadow .2s ease;
+
             &:last-child {
                 margin-bottom: 0;
             }
-    
+
             &.selected {
-                border-color: $primary-border-subtle;
-                box-shadow: $box-shadow-sm;
+                border-color: var(--soft-card-selected-border);
+                box-shadow: 0 ($spacer * .125) ($spacer * .375) color.change($gray-900, $alpha: .02);
 
                 .section-card-header {
                     background: linear-gradient(90deg, tint-color($blue-100, 70%), $gray-100);
-                    border-bottom-color: $primary-bg-subtle;
+                    border-bottom-color: var(--soft-header-selected-border);
                 }
 
                 .modern-checkbox-label {
-                    color: var(--copy-primary);
-                    border-color: $input-focus-border-color;
+                    color: var(--soft-checkbox-active);
+                    border-color: var(--soft-checkbox-active-border);
+                    background: $body-bg;
                 }
-
             }
-    
+
             &.unselected {
-                background: $gray-100;
+                background: var(--soft-unselected-bg);
                 border-style: dashed;
-    
+                border-color: var(--soft-unselected-border);
+
                 .section-card-body {
-                    opacity: .7;
+                    opacity: .75;
                 }
             }
 
             .section-card-header {
-                padding: ($spacer * .5) $spacer;
+                padding: ($spacer * .45) ($spacer * .85);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 gap: $spacer * .5;
-                background: $gray-200;
-                border-bottom: $border-width solid var(--copy-border);
+                background: var(--soft-header-bg);
+                border-bottom: $border-width solid var(--soft-card-border);
                 cursor: pointer;
+                transition: background-color .15s ease;
 
                 .section-header-title {
                     font-size: $copy-font-size-base;
                     font-weight: $font-weight-medium;
+                    color: $gray-800;
                     margin: 0;
                     display: flex;
                     align-items: center;
                     gap: $spacer * .5;
-                }        
-           
+                }
+
                 .modern-checkbox-label {
                     display: inline-flex;
                     align-items: center;
-                    gap: $spacer * .5;
+                    gap: $spacer * .4;
                     margin: 0;
                     font-size: $copy-font-size-sm;
-                    padding: ($spacer * .25) ($spacer * .75);
+                    padding: ($spacer * .2) ($spacer * .65);
                     border-radius: $border-radius;
-                    border: $border-width solid $gray-400;
+                    border: $border-width solid $gray-300;
                     background: $body-bg;
                     color: $gray-700;
                     cursor: pointer;
                     white-space: nowrap;
-            
+                    user-select: none;
+                    transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+
+                    &:hover {
+                        border-color: var(--soft-checkbox-hover-border);
+                    }
+
                     input {
                         position: absolute;
                         opacity: 0;
@@ -785,85 +846,184 @@ $border-radius: $border-radius-lg;
                         height: 1px;
                     }
                 }
-            
+
                 .checkmark-box {
-                    width: 15px;
-                    height: 15px;
-                    border: ($border-width * 2) solid $gray-500;
+                    width: $spacer * .875;
+                    height: $spacer * .875;
+                    border: $border-width solid var(--soft-checkbox-border);
                     border-radius: $border-radius-sm;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
                     background: $body-bg;
-            
+                    transition: background-color .15s ease, border-color .15s ease;
+
                     i {
-                        color: $form-check-input-checked-color;
-                        font-size: 9px;
+                        color: $white;
+                        font-size: $font-size-base * .5;
                         opacity: 0;
+                        transform: scale(.8);
+                        transition: opacity .15s ease, transform .15s ease;
                     }
                 }
-            
-                input:checked + .checkmark-box {
-                    background: $form-check-input-checked-bg-color;
-                    border-color: $form-check-input-checked-border-color;
-            
+
+                input:checked + .checkmark-box,
+                input:indeterminate + .checkmark-box {
+                    background: $primary;
+                    border-color: var(--soft-checkbox-active);
+
                     i {
                         opacity: 1;
+                        transform: scale(1);
                     }
                 }
 
                 input:focus-visible + .checkmark-box,
                 button:focus-visible,
                 &:focus-visible {
-                    outline: $focus-ring-width solid $input-focus-border-color;
-                    outline-offset: $spacer * .125;
+                    outline: 2px solid var(--soft-focus-ring);
+                    outline-offset: 2px;
                 }
             }
 
             .section-card-body {
-                padding: ($spacer * .75) $spacer;
+                padding: ($spacer * .65) ($spacer * .85);
 
                 .copy-preview-grid {
                     display: grid;
-                    grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr);
-                    column-gap: 1.5rem;
-                    row-gap: 0.35rem;
-                    align-items: baseline;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    column-gap: $spacer * .75;
+                    row-gap: $spacer * .35;
+
+                    @include media-breakpoint-down(md) {
+                        grid-template-columns: 1fr;
+                    }
 
                     .info-pair {
-                        display: contents;
+                        display: flex;
+                        align-items: baseline;
+                        justify-content: space-between;
+                        gap: $spacer * .5;
+                        margin: 0;
+                        padding: ($spacer * .35) ($spacer * .6);
+                        border-radius: $border-radius-sm * 1.5;
+                        border: $border-width solid transparent;
+                        background: transparent;
+                        cursor: pointer;
+                        user-select: none;
+                        transition: background-color .15s ease, border-color .15s ease;
+
+                        &:hover:not(.is-locked) {
+                            background: var(--soft-item-hover-bg);
+                            border-color: var(--soft-item-hover-border);
+                        }
+
+                        &:has(.copy-item-checkbox:checked),
+                        &.is-checked {
+                            background: var(--soft-item-checked-bg);
+                            border-color: var(--soft-item-checked-border);
+
+                            .info-label .label-text {
+                                color: $gray-800;
+                            }
+                        }
+
+                        &.is-locked {
+                            cursor: default;
+                            background: var(--soft-locked-bg);
+                            border: $border-width dashed var(--soft-locked-border);
+                            opacity: .85;
+
+                            .lock-icon-box {
+                                width: $spacer * .875;
+                                height: $spacer * .875;
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: $gray-500;
+                                font-size: $font-size-base * .625;
+                                flex-shrink: 0;
+                            }
+                        }
                     }
-                
+
                     .info-label {
-                        color: var(--copy-muted);
+                        display: inline-flex;
+                        align-items: center;
+                        gap: $spacer * .45;
+                        color: var(--copy-muted, #{$gray-600});
                         text-align: left;
                         white-space: nowrap;
-                        font-size: 11px;
+                        font-size: $copy-font-size-xs;
                         line-height: calc(1 / 0.75);
-                        padding: 0.15rem 0;
+                        font-weight: $font-weight-normal;
+                        line-height: $line-height-base;
+                        flex-shrink: 0;
+
+                        .copy-item-checkbox {
+                            position: absolute;
+                            opacity: 0;
+                            width: 1px;
+                            height: 1px;
+                            pointer-events: none;
+                        }
+
+                        .item-checkmark {
+                            width: $spacer * .775;
+                            height: $spacer * .775;
+                            min-width: $spacer * .775;
+                            border: $border-width solid var(--soft-checkbox-border);
+                            border-radius: $border-radius-sm;
+                            background: $white;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            transition: background-color .15s ease, border-color .15s ease;
+
+                            i {
+                                color: $white;
+                                font-size: $font-size-base * .45;
+                                opacity: 0;
+                                transform: scale(.7);
+                                transition: opacity .15s ease, transform .15s ease;
+                            }
+                        }
+
+                        .copy-item-checkbox:checked + .item-checkmark {
+                            background: var(--soft-checkbox-active);
+                            border-color: var(--soft-checkbox-active);
+
+                            i {
+                                opacity: 1;
+                                transform: scale(1);
+                            }
+                        }
+
+                        .copy-item-checkbox:focus-visible + .item-checkmark {
+                            box-shadow: 0 0 0 2px var(--soft-focus-ring-soft);
+                        }
                     }
-                
+
                     .info-value {
                         font-weight: $font-weight-medium;
-                        text-align: left;
-                        padding-left: 0.5rem;
-                        padding-top: 0.15rem;
-                        padding-bottom: 0.15rem;
-                        font-size: 11px;
+                        color: $gray-900;
+                        text-align: right;
+                        font-size: $copy-font-size-xs;
                         line-height: calc(1 / 0.75);
+                        line-height: $line-height-base;
                         overflow-wrap: anywhere;
                         min-width: 0;
                     }
-                
-                    .highlight-price {
-                        color: $blue-800;
+
+                    .highlight-value {
+                        color: $blue-700;
                         font-weight: $font-weight-semibold;
                     }
-
                 }
             }
         }
     }
+
 
     .selection-summary {
         display: flex;
@@ -936,8 +1096,16 @@ $border-radius: $border-radius-lg;
     @include media-breakpoint-down(lg) {
         .split-layout {
             flex-direction: column;
+            max-height: none;
             height: auto;
+            gap: 1rem;
+
+            .panel-divider {
+                display: none;
+              }
         }
+
+
 
         .left-panel {
             flex: none;
@@ -1213,36 +1381,36 @@ $border-radius: $border-radius-lg;
                 .serial-input-group {
                     display: flex;
                     align-items: center;
-                    max-width: 310px;
-                }
-                
-                .serial-label {
-                    font-size: 13px;
-                    font-weight: $font-weight-medium;
-                    color: $gray-700;
-                    margin-bottom: 0;
-                    margin-right: 0.6rem;
-                    white-space: nowrap;
-                }
-                
-                .input-serial-box {
-                    height: 30px;
-                    font-family: 'Kanit', sans-serif;
-                    font-size: 13px;
-                    font-weight: $font-weight-normal;
-                    color: $gray-700;
-                    background-color: $white;
-                    border: $border-width solid $gray-400;
-                    border-radius: $border-radius-sm;
-                    padding: 0.2rem 0.55rem;
-                    transition: $input-transition;
-                
-                    &:focus {
-                        border-color: shade-color($primary, 10%);
-                        box-shadow: 0 0 0 0.2rem rgba($primary, 0.15);
-                        outline: none;
+                    max-width: 500px;
+
+                    .serial-label {
+                        font-size: 13px;
+                        font-weight: $font-weight-medium;
+                        color: $gray-700;
+                        margin-bottom: 0;
+                        margin-right: 0.6rem;
+                        white-space: nowrap;
                     }
-                }
+                    
+                    .input-serial-box {
+                        height: 30px;
+                        font-family: 'Kanit', sans-serif;
+                        font-size: 13px;
+                        font-weight: $font-weight-normal;
+                        color: $gray-700;
+                        background-color: $white;
+                        border: $border-width solid $gray-400;
+                        border-radius: $border-radius-sm;
+                        padding: 0.2rem 0.55rem;
+                        transition: $input-transition;
+                    
+                        &:focus {
+                            border-color: shade-color($primary, 10%);
+                            box-shadow: 0 0 0 0.2rem rgba($primary, 0.15);
+                            outline: none;
+                        }
+                    }
+                }               
             }
         }
 
@@ -1273,7 +1441,7 @@ $border-radius: $border-radius-lg;
     .btn-icon-action {
         width: 26px;
         height: 26px;
-        border-radius: $border-radius-sm;
+        border-radius: $border-radius-lg;
         border: none;
         background: transparent;
         display: inline-flex;
@@ -1282,6 +1450,10 @@ $border-radius: $border-radius-lg;
         transition: $transition-base;
         cursor: pointer;
         font-size: 0.82rem;
+
+        &:focus,&:active{
+            outline: none;
+        }
     }
     
     .btn-icon-edit {
@@ -1324,6 +1496,10 @@ $border-radius: $border-radius-lg;
 	margin-top: $spacer * 1.5;
 	transition: $transition-base;
     box-shadow: $box-shadow-sm;
+
+    .form-control.is-invalid {
+        outline: none;
+    }
 
 	&:focus-within,
 	&:hover {
@@ -1418,8 +1594,50 @@ $border-radius: $border-radius-lg;
 				box-shadow: 0 0 0 0.2rem rgba($primary, 0.15) !important;
 			}
 		}
+
+		&.select2-container--disabled {
+			.select2-selection--single {
+				background-color: $gray-200 !important;
+				border-color: $gray-400 !important;
+				cursor: not-allowed !important;
+				opacity: 0.85;
+
+				.select2-selection__rendered {
+					color: $gray-600 !important;
+					cursor: not-allowed !important;
+				}
+
+				.select2-selection__arrow {
+					cursor: not-allowed !important;
+					opacity: 0.5;
+				}
+			}
+		}
+	}
+
+	.form-control.is-invalid,
+	select.is-invalid + .select2-container .select2-selection--single,
+	.select2-container.is-invalid .select2-selection--single {
+		border-color: $form-invalid-border-color !important;
+	}
+
+	.form-control.is-invalid:focus,
+	select.is-invalid + .select2-container.select2-container--focus .select2-selection--single,
+	.select2-container.is-invalid.select2-container--focus .select2-selection--single {
+		border-color: $form-invalid-border-color !important;
+		box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, $input-btn-focus-color-opacity) !important;
+	}
+
+	.invalid-tooltip {
+		font-size: $font-size-base * .75 !important;
+		line-height: calc(1 / 0.75);
+		padding: ($spacer * .2) ($spacer * .5);
+		border-radius: $border-radius-sm;
+		white-space: nowrap;
+		z-index: $zindex-tooltip;
 	}
 }
+
 
 
 /* ============================================================ */
