@@ -745,7 +745,7 @@ $border-radius: $border-radius-lg;
         --soft-item-hover-bg: #{$gray-100};
         --soft-item-hover-border: #{$gray-200};
         --soft-checkbox-border: #{$gray-400};
-        --soft-checkbox-active: rgb(155 182 223);
+        --soft-checkbox-active: #{$blue-300};
         --soft-checkbox-active-border: #{tint-color($blue-300, 55%)};
         --soft-checkbox-hover-border: #{tint-color($primary, 55%)};
         --soft-unselected-bg: #{tint-color($gray-100, 65%)};
@@ -1068,6 +1068,11 @@ $border-radius: $border-radius-lg;
             background: tint-color($green-100, 10%);
             border-color: $green-300;
             box-shadow: $box-shadow-sm;
+        }
+    }
+    .copy-load-more {
+        &:focus,&:active{
+            outline: none;
         }
     }
 
@@ -1526,14 +1531,6 @@ $border-radius: $border-radius-lg;
 			outline: none;
 		}
 	}
-
-    .form-control-readonly-locked {
-        background-color: tint-color($gray-200, 40%) !important;
-        border: 1.5px solid $gray-400 !important;
-        color: $gray-700 !important;
-        font-weight: $font-weight-semibold;
-        cursor: not-allowed;
-    }
 
     .btn-add-batch {
         background-color: tint-color($success, 90%);
