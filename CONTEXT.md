@@ -179,15 +179,12 @@ Bootstrap CSS หลักต้องโหลดแยกจากโปรเ
 
 ---
 
-## คำถามที่ยังไม่ได้กำหนดใน repo (เติมเองได้)
+## ข้อมูลความเชื่อมโยงกับระบบหลัก (`backoffice1`)
 
-ใส่ข้อมูลต่อไปนี้เมื่อทีมพร้อม — ช่วยให้ AI ทำงานแม่นขึ้น:
-
-- [ ] URL / path จริงที่ deploy `dist/sass/*.css` บน server
-- [ ] เวอร์ชัน Bootstrap CSS ที่โหลดในระบบหลัก (CDN หรือ local)
-- [ ] ฟอนต์หลัก (เช่น Kanit — ใช้ในบางไฟล์เช่น `risk.scss`)
-- [ ] โปรเจกต์ PHP/repo หลักที่ consume CSS นี้ (ลิงก์ Git หรือชื่อโฟลเดอร์)
-- [ ] กฎ code review / ใคร approve ก่อน merge
+- **โปรเจกต์ที่ consume CSS:** `backoffice1` (`C:\Users\ticha\developer\backoffice1`, Laravel 8.12)
+- **เวอร์ชัน CSS / UI Framework ของระบบหลัก:** Bootstrap 4.6 + Dashmix 1.0 (ดังนั้นห้ามเขียนสไตล์หรือพึ่งพา Utility Class เฉพาะของ Bootstrap 5 ใน CSS ที่ส่งออก แม้ใน SASS จะใช้ Bootstrap 5.3 เป็นฐาน token ก็ตาม)
+- **ฟอนต์หลัก:** `Kanit`
+- **การนำ CSS ไปใช้งาน:** คอมไพล์เป็นไฟล์ `.css` ใน `dist/sass/` แล้วให้ผู้ใช้คัดลอกไปวางใน `backoffice1` ด้วยตนเอง
 
 ---
 
