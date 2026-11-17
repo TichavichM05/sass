@@ -63,8 +63,25 @@ $gtw-bg-thead: #FFEBCD;
 	.table-custom{
 		border-radius: 0.25rem !important;
 		border: 1px solid map-get($yellows,'yellow-500');
-		overflow: hidden;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
 		table {
+			// หน้าจอเล็กกว่า lg ให้เลื่อนตารางในแนวนอนแทนการตัดเนื้อหาทิ้ง
+			@include media-breakpoint-down(lg) {
+				min-width: 760px;
+				th, td {
+					white-space: nowrap;
+				}
+				.file-name {
+					white-space: normal;
+					word-break: break-all;
+					min-width: 200px;
+				}
+				.note-input {
+					min-width: 120px;
+				}
+			}
 			thead tr {
 				height: 35px;
 				vertical-align: middle;
