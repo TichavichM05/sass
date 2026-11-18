@@ -2011,6 +2011,10 @@ $border-radius: $border-radius-lg;
         white-space: nowrap;
     }
 
+    .table-responsive {
+        position: relative;
+    }
+
     .registered-assets-table {
         th,
         td {
