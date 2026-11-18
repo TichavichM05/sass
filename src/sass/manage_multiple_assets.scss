@@ -2021,7 +2021,7 @@ $border-radius: $border-radius-lg;
         thead th {
             border-top: 0;
             border-bottom: 1px solid $gray-300;
-            color: $gray-600;
+            color: $gray-800;
             font-size: 0.85rem;
             font-weight: $font-weight-semibold;
             white-space: nowrap;
@@ -2040,11 +2040,6 @@ $border-radius: $border-radius-lg;
             width: 90px;
             text-align: right;
             white-space: nowrap;
-        }
-
-        .registered-asset-code {
-            font-weight: $font-weight-semibold;
-            color: $gray-800;
         }
     }
 
