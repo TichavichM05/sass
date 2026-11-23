@@ -120,6 +120,7 @@ npx sass src/sass/badge_style.scss dist/sass/badge_style.css --no-source-map
 | `select2/` | ธีม Select2 |
 | `vehicle_normal.scss`, `leader_vehicle_allocate.scss` | ยานพาหนะ |
 | `hovercard.shift.scss` | hover card เวร |
+| `gtw_progress_bar.scss` | กล่อง Progress Bar ดาวน์โหลดไฟล์ (SweetAlert2 `.gtw-progress-bar` / `.gtw-pb-filename`) |
 
 รายการอาจเพิ่มตามหน้าใหม่ในระบบหลัก — **อัปเดตตารางนี้เมื่อเพิ่มไฟล์**
 

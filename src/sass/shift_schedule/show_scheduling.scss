@@ -22,30 +22,6 @@
 }
 
 
-
-
-/* begin::operate top menu horizontal scroll (< 992px) */
-.operate-top-menu-nav {
-	max-width: 100%;
-	min-width: 0;
-
-	.breadcrumb {
-		flex-wrap: nowrap;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-		scrollbar-width: thin;
-
-		&::-webkit-scrollbar {
-			height: 4px;
-		}
-		&::-webkit-scrollbar-thumb {
-			background: #cbd5e1;
-			border-radius: 4px;
-		}
-	}
-}
-/* end::operate top menu horizontal scroll */
-
 /* begin::shift schedule table */
 .shift-schedule-table-wrapper {
 	overflow-x: auto;
@@ -257,6 +233,28 @@
 }
 /* end::shift schedule table */
 
+/* begin::operate top menu horizontal scroll (< 992px) */
+.operate-top-menu-nav {
+	max-width: 100%;
+	min-width: 0;
+
+	.breadcrumb {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: thin;
+
+		&::-webkit-scrollbar {
+			height: 4px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #cbd5e1;
+			border-radius: 4px;
+		}
+	}
+}
+/* end::operate top menu horizontal scroll */
+
 
 /* begin::modal align position */
 #grouping_position {
@@ -329,66 +327,6 @@
 
 /* end::modal align position */
 
-
-/* begin:: progress download file */
-@keyframes shimmerProgressBarSwal2 {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-@keyframes bounceInProgressBarSwal2 {
-	0% { transform: scale(0.5); opacity: 0; }
-	50% { transform: scale(1.2); }
-	100% { transform: scale(1); opacity: 1; }
-}
-.progress-bar-swal2-container{
-	.downloadfile-progress-bar {
-		width: 100%;
-		height: 25px;
-		background: linear-gradient(90deg, #dfedf1 0%, #f1fcff 100%);
-		border-radius: 16px;
-		overflow: hidden;
-		box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
-		position: relative;
-	}
-	
-	.downloadfile-progress-fill {
-		height: 100%;
-		background: linear-gradient(90deg, #638bf1 0%, #5ca4f6 50%, #55d1f7 100%);
-		border-radius: 16px;
-		transition: width 0.3s ease;
-		position: relative;
-		box-shadow: 0 2px 8px rgba(92, 231, 246, 0.4);
-	}	
-	.downloadfile-progress-fill::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-		animation: shimmerProgressBarSwal2 2s infinite linear; /* Use linear for a smoother loop */
-	}
-	.downloadfile-progress-text {
-		font-size: 20px;
-		font-weight: 700;
-		color: #1782b7;
-		text-align: center;
-		margin-top: 16px;
-		/* Use tabular-nums to prevent text from jumping as numbers change width */
-		font-variant-numeric: tabular-nums;
-		text-shadow: 0 2px 4px rgba(99, 241, 222, 0.1);
-	}
-	
-	.swal2-icon.swal2-success .swal2-success-ring {
-		animation: bounceInProgressBarSwal2 0.8s;
-	}
-}
-/* end:: progress download file */
 
 @mixin btn-outline-soft($color, $name) {
 .btn-outline-soft-#{$name} {

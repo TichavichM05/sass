@@ -1,122 +1,377 @@
-// Bootstrap 5
+// Bootstrap 5 Modern Progress Bar (SweetAlert2)
+@use 'sass:color';
 @import "bootstrap_bs5/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
+
 :root {
-	--gtw-pb-font-family: "Kanit", sans-serif;
+	--gtw-pb-font-family: "Kanit", -apple-system, BlinkMacSystemFont, sans-serif;
 
-	--gtw-pb-icon-bg: #{tint-color($blue-100,20%)};
-	--gtw-pb-icon-color: #{map-get($blues, "blue-500")};
-	--gtw-pb-icon-shadow-color: #{rgba($black, 0.1)};
-	--gtw-pb-icon-shadow-color-soft: #{rgba($black, 0.06)};
-	--gtw-pb-icon-shadow:
-		0 4px 6px -1px var(--gtw-pb-icon-shadow-color),
-		0 2px 4px -1px var(--gtw-pb-icon-shadow-color-soft);
+	// Surface & Elevation
+	--gtw-pb-surface: #{$white};
+	--gtw-pb-border: #{rgba($black, 0.08)};
+	--gtw-pb-radius: #{$border-radius-xl};
+	--gtw-pb-popup-shadow:
+		0 24px 48px -12px #{rgba($gray-900, 0.16)},
+		0 4px 12px -2px #{rgba($gray-900, 0.06)};
 
+	// Primary Accent Gradient (Cyan -> Teal)
+	--gtw-pb-accent-from: #{map-get($blues, "blue-500")};
+	--gtw-pb-accent-mid: #{map-get($cyans, "cyan-500")};
+	--gtw-pb-accent-to: #{map-get($teals, "teal-500")};
+	--gtw-pb-accent-glow: #{rgba(map-get($cyans, "cyan-500"), 0.35)};
+	--gtw-pb-accent-soft: #{tint-color($cyan-100, 35%)};
+	--gtw-pb-accent-ring: #{rgba(map-get($cyans, "cyan-500"), 0.24)};
+	--gtw-pb-accent-text: #{map-get($cyans, "cyan-600")};
+
+	// Semantic Colors
+	--gtw-pb-warning: #{map-get($yellows, "yellow-600")};
+	--gtw-pb-warning-soft: #{rgba(map-get($yellows, "yellow-500"), 0.14)};
+	--gtw-pb-warning-ring: #{rgba(map-get($yellows, "yellow-500"), 0.25)};
+
+	--gtw-pb-success: #{map-get($teals, "teal-500")};
+	--gtw-pb-success-soft: #{rgba(map-get($teals, "teal-500"), 0.14)};
+	--gtw-pb-success-ring: #{rgba(map-get($teals, "teal-500"), 0.25)};
+
+	--gtw-pb-danger: #{map-get($reds, "red-500")};
+	--gtw-pb-danger-soft: #{rgba(map-get($reds, "red-500"), 0.12)};
+	--gtw-pb-danger-ring: #{rgba(map-get($reds, "red-500"), 0.24)};
+
+	// Typography & Neutral
 	--gtw-pb-title-color: #{map-get($grays, "900")};
-	--gtw-pb-status-color: #{map-get($grays, "600")};
-	--gtw-pb-text-color: #{map-get($grays, "800")};
+	--gtw-pb-subtitle-color: #{map-get($grays, "600")};
+	--gtw-pb-status-color: #{map-get($grays, "700")};
+	--gtw-pb-text-color: #{map-get($grays, "900")};
+	--gtw-pb-pill-bg: #{color.change(map-get($grays, "100"), $alpha: 0.7)};
 
+	// Track & Fill
 	--gtw-pb-track-bg: #{map-get($grays, "200")};
-	--gtw-pb-track-shadow-color: #{rgba($black, 0.05)};
-	--gtw-pb-track-shadow: inset 0 2px 4px var(--gtw-pb-track-shadow-color);
-
-	--gtw-pb-fill-from: #{map-get($cyans, "cyan-500")};
-	--gtw-pb-fill-to: #{map-get($teals, "teal-500")};
-	--gtw-pb-fill-bg: linear-gradient(to right, var(--gtw-pb-fill-from), var(--gtw-pb-fill-to));
-
-	--gtw-pb-shimmer-color: #{rgba($white, 0.4)};
+	--gtw-pb-track-border: #{rgba($black, 0.04)};
+	--gtw-pb-fill-bg: linear-gradient(
+		90deg,
+		var(--gtw-pb-accent-from) 0%,
+		var(--gtw-pb-accent-mid) 50%,
+		var(--gtw-pb-accent-to) 100%
+	);
+	--gtw-pb-shimmer-color: #{rgba($white, 0.55)};
 }
 
-@keyframes gtwPBShimmerEffect {
-	0% { transform: translateX(-100%); }
-	100% { transform: translateX(100%); }
+// Dark Mode Support (Bootstrap 5.3+)
+[data-bs-theme="dark"] {
+	--gtw-pb-surface: #111827;
+	--gtw-pb-border: #{rgba($white, 0.09)};
+	--gtw-pb-popup-shadow: 0 28px 60px -12px #{rgba($black, 0.65)};
+	--gtw-pb-title-color: #{$gray-100};
+	--gtw-pb-subtitle-color: #{$gray-400};
+	--gtw-pb-status-color: #{$gray-300};
+	--gtw-pb-text-color: #{$gray-100};
+	--gtw-pb-pill-bg: #{rgba($white, 0.06)};
+	--gtw-pb-track-bg: #{rgba($white, 0.08)};
+	--gtw-pb-track-border: #{rgba($white, 0.05)};
 }
 
-@keyframes gtwPBBounceIcon {
-	0%, 100% { transform: translateY(0); }
-	50% { transform: translateY(-10%); }
+// Animations
+@keyframes gtwPBShimmer {
+	0%   { transform: translateX(-100%) skewX(-18deg); }
+	100% { transform: translateX(260%) skewX(-18deg); }
 }
 
+@keyframes gtwPBPulseRing {
+	0%   { transform: scale(0.92); opacity: 0.7; }
+	70%  { transform: scale(1.28); opacity: 0; }
+	100% { transform: scale(1.28); opacity: 0; }
+}
+
+@keyframes gtwPBArrowFloat {
+	0%, 100% { transform: translateY(-2px); }
+	50%      { transform: translateY(3px); }
+}
+
+@keyframes gtwPBSpin {
+	to { transform: rotate(360deg); }
+}
+
+@keyframes gtwPBDotPulse {
+	0%, 100% { transform: scale(1); opacity: 1; }
+	50%      { transform: scale(1.45); opacity: 0.55; }
+}
+
+@keyframes gtwPBCheckDraw {
+	0%   { stroke-dashoffset: 36; opacity: 0; }
+	30%  { opacity: 1; }
+	100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes gtwPBPopIn {
+	0%   { transform: scale(0.8); opacity: 0; }
+	65%  { transform: scale(1.06); opacity: 1; }
+	100% { transform: scale(1); opacity: 1; }
+}
+
+// Component Styles
 .gtw-progress-bar {
-	border-radius: $border-radius-lg !important;
-	padding: map-get($spacers, 2) !important;
+	width: min(420px, 92vw) !important;
+	background: var(--gtw-pb-surface) !important;
+	border: 1px solid var(--gtw-pb-border) !important;
+	border-radius: var(--gtw-pb-radius) !important;
+	box-shadow: var(--gtw-pb-popup-shadow) !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+
+	.swal2-html-container {
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+	}
+
+	.swal2-actions {
+		width: 100%;
+		justify-content: flex-end !important;
+		padding: 0 1.5rem !important;
+		margin: 0 0 1.25rem !important;
+	}
+
+	.swal2-confirm.gtw-pb-btn {
+		background: var(--gtw-pb-fill-bg) !important;
+		color: $white !important;
+		font-family: var(--gtw-pb-font-family) !important;
+		font-weight: 500 !important;
+		padding: 0.625rem 1.75rem !important;
+		border-radius: $border-radius-lg !important;
+		box-shadow: 0 8px 20px -4px var(--gtw-pb-accent-glow) !important;
+	}
 
 	.progress-bar-swal2-container {
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: stretch;
+		padding: 1.375rem 1.5rem 1.5rem;
 		font-family: var(--gtw-pb-font-family);
-		padding: 10px 0;
+		text-align: left;
+		isolation: isolate;
 
-		.swal2-icon {
-			width: 56px;
-			height: 56px;
-			background-color: var(--gtw-pb-icon-bg);
-			color: var(--gtw-pb-icon-color);
-			border-radius: 50%;
+		&::before {
+			content: "";
+			position: absolute;
+			top: -36px;
+			left: -24px;
+			width: 180px;
+			height: 140px;
+			background: radial-gradient(circle, var(--gtw-pb-accent-soft) 0%, transparent 72%);
+			z-index: -1;
+			pointer-events: none;
+			transition: background 0.4s ease;
+		}
+
+		.gtw-pb-header {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			gap: 0.875rem;
+			margin-bottom: 1.125rem;
+		}
+
+		.gtw-pb-heading {
+			flex: 1;
+			min-width: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.25rem;
+		}
+
+		.gtw-pb-icon {
+			position: relative;
+			width: 44px;
+			height: 44px;
+			flex-shrink: 0;
+			border-radius: 13px;
+			background: var(--gtw-pb-accent-soft);
+			color: var(--gtw-pb-accent-text);
+			border: 1px solid var(--gtw-pb-accent-ring);
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin-bottom: 16px;
-			box-shadow: var(--gtw-pb-icon-shadow);
-			animation: gtwPBBounceIcon 2s infinite;
+			margin-bottom: 0;
+			transition: all 0.35s ease;
+
+			&::after {
+				content: "";
+				position: absolute;
+				inset: -3px;
+				border-radius: 16px;
+				border: 2px solid var(--gtw-pb-accent-ring);
+				animation: gtwPBPulseRing 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+				pointer-events: none;
+			}
+
+			svg {
+				width: 21px;
+				height: 21px;
+				stroke-width: 2.1;
+			}
+
+			.arrow-path {
+				animation: gtwPBArrowFloat 1.6s ease-in-out infinite;
+			}
 		}
 
 		.swal2-title {
-			font-size: 1.125rem !important;
-			font-weight: 600;
-			color: var(--gtw-pb-title-color);
-			margin-bottom: 8px;
+			font-size: 1.05rem !important;
+			font-weight: 600 !important;
+			color: var(--gtw-pb-title-color) !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			text-align: left !important;
+		}
+
+		.gtw-pb-filename {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			line-clamp: 2;
+			max-width: 100%;
+			padding: 0 0.625rem;
+			border-top: 0.2rem solid transparent;
+			border-bottom: 0.2rem solid transparent;
+			margin-bottom: 0;
+			border-radius: $border-radius-lg;
+			border: 1px solid $gray-300;
+			background: var(--gtw-pb-pill-bg);		
+			background-clip: border-box;
+			color: var(--gtw-pb-subtitle-color);
+			font-size: 0.76rem;
+			line-height: 1.5;
+			white-space: normal;
+			overflow-wrap: anywhere;
+			word-break: break-word;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			&:empty {
+				display: none;
+			}
+		}
+
+		.gtw-pb-meta {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.75rem;
+			margin-bottom: 0.625rem;
+		}
+
+		.gtw-pb-status-wrap {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			min-width: 0;
+		}
+
+		.gtw-pb-status-dot {
+			width: 8px;
+			height: 8px;
+			flex-shrink: 0;
+			border-radius: 50%;
+			background: var(--gtw-pb-accent-mid);
+			box-shadow: 0 0 0 3px var(--gtw-pb-accent-soft);
+			animation: gtwPBDotPulse 1.6s ease-in-out infinite;
 		}
 
 		.swal2-status {
-			font-size: 0.875rem !important;
+			font-size: 0.86rem !important;
 			color: var(--gtw-pb-status-color);
-			margin-bottom: 20px;
+			margin: 0 !important;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 			transition: color 0.3s ease;
 		}
 
 		.progress-text {
-			font-size: 1.3rem !important;
+			font-size: 1.15rem !important;
 			font-weight: 700;
 			color: var(--gtw-pb-text-color);
-			margin-top: 16px;
+			margin: 0 !important;
 			font-variant-numeric: tabular-nums;
+			flex-shrink: 0;
 		}
 
 		.progress-bar {
 			width: 100%;
-			height: 20px;
-			background-color: var(--gtw-pb-track-bg);
+			height: 10px;
+			background: var(--gtw-pb-track-bg);
+			border: 1px solid var(--gtw-pb-track-border);
 			border-radius: 9999px;
 			overflow: hidden;
 			position: relative;
-			box-shadow: var(--gtw-pb-track-shadow);
 
 			.progress-bar-fill {
 				height: 100%;
 				background: var(--gtw-pb-fill-bg);
 				border-radius: 9999px;
-				transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 				position: relative;
+				overflow: hidden;
+				transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+				box-shadow: 0 0 12px var(--gtw-pb-accent-glow);
 
 				&::after {
 					content: "";
 					position: absolute;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
+					inset: 0;
+					width: 45%;
 					background: linear-gradient(
 						90deg,
 						transparent 0%,
 						var(--gtw-pb-shimmer-color) 50%,
 						transparent 100%
 					);
-					animation: gtwPBShimmerEffect 1.5s infinite linear;
+					animation: gtwPBShimmer 1.65s infinite linear;
 				}
 			}
+		}
+
+		.gtw-pb-error-message {
+			width: 100%;
+			margin-top: 0;
+			padding: 0.75rem 0.875rem;
+			border-radius: $border-radius-lg;
+			background: var(--gtw-pb-danger-soft);
+			border: 1px solid var(--gtw-pb-danger-ring);
+			color: var(--gtw-pb-danger);
+			font-size: 0.85rem;
+			line-height: 1.5;
+			text-align: left;
+		}
+
+		// Semantic States
+		&[data-state="preparing"] {
+			&::before { background: radial-gradient(circle, var(--gtw-pb-warning-soft) 0%, transparent 72%); }
+			.gtw-pb-icon { background: var(--gtw-pb-warning-soft); color: var(--gtw-pb-warning); border-color: var(--gtw-pb-warning-ring); }
+			.gtw-pb-icon::after { border-color: var(--gtw-pb-warning-ring); }
+			.gtw-pb-status-dot { background: var(--gtw-pb-warning); box-shadow: 0 0 0 3px var(--gtw-pb-warning-soft); }
+			.swal2-status { color: var(--gtw-pb-warning); }
+			.progress-bar-fill { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+		}
+
+		&[data-state="success"] {
+			&::before { background: radial-gradient(circle, var(--gtw-pb-success-soft) 0%, transparent 72%); }
+			.gtw-pb-icon { background: var(--gtw-pb-success-soft); color: var(--gtw-pb-success); border-color: var(--gtw-pb-success-ring); animation: gtwPBPopIn 0.45s ease forwards; }
+			.gtw-pb-icon::after { animation: none; opacity: 0; }
+			.check-path { stroke-dasharray: 36; animation: gtwPBCheckDraw 0.45s ease-out forwards; }
+			.gtw-pb-status-dot { background: var(--gtw-pb-success); box-shadow: 0 0 0 3px var(--gtw-pb-success-soft); animation: none; }
+			.swal2-status, .progress-text { color: var(--gtw-pb-success); }
+			.progress-bar-fill { background: linear-gradient(90deg, #059669, #10b981, #34d399); &::after { display: none; } }
+		}
+
+		&[data-state="error"] {
+			&::before { background: radial-gradient(circle, var(--gtw-pb-danger-soft) 0%, transparent 72%); }
+			.gtw-pb-icon { background: var(--gtw-pb-danger-soft); color: var(--gtw-pb-danger); border-color: var(--gtw-pb-danger-ring); animation: gtwPBPopIn 0.4s ease forwards; }
+			.gtw-pb-icon::after { animation: none; opacity: 0; }
+			.gtw-pb-status-dot { background: var(--gtw-pb-danger); animation: none; }
+			.swal2-status { color: var(--gtw-pb-danger); }
 		}
 	}
 }
