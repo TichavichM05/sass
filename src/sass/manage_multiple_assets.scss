@@ -1515,6 +1515,57 @@ $border-radius: $border-radius-lg;
                     color: $gray-700;
                     font-size: 13px;
                     letter-spacing: 0.2px;
+
+                    &.is-loading {
+                        display: inline-flex;
+                        align-items: center;
+                        min-height: 20px;
+                    }
+
+                    &.is-error {
+                        color: $danger;
+                    }
+
+                    .fsn-skeleton-pattern {
+                        display: inline-flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        gap: 2px;
+                        min-height: 19px;
+                        vertical-align: middle;
+
+                        .fsn-skeleton-bar {
+                            display: inline-block;
+                            height: 12px;
+                            border-radius: $border-radius-pill;
+                            background: linear-gradient(90deg, $gray-300 25%, $gray-200 50%, $gray-300 75%);
+                            background-size: 200% 100%;
+                            animation: skeletonPulseWave 1.25s infinite ease-in-out;
+
+                            &--sequence {
+                                background: linear-gradient(90deg, tint-color($primary, 80%) 25%, tint-color($primary, 90%) 50%, tint-color($primary, 80%) 75%);
+                                background-size: 200% 100%;
+                            }
+                        }
+
+                        .fsn-skeleton-sep {
+                            color: $gray-400;
+                            font-size: 12px;
+                            line-height: 1;
+                            user-select: none;
+                        }
+
+                        .fsn-skeleton-space {
+                            display: inline-block;
+                            width: 4px;
+                        }
+                    }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .child-fsn-code .fsn-skeleton-pattern .fsn-skeleton-bar {
+                        animation: none;
+                    }
                 }
     
                 .serial-input-group {
